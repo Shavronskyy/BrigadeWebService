@@ -1,5 +1,7 @@
+const BASE_URL = "";
+
 export const API_CONFIG = {
-  BASE_URL: "http://127.0.0.1:5000",
+  BASE_URL,
   ENDPOINTS: {
     DONATIONS: "/api/Donations",
     CAMPAIGNS: "/api/Campaigns",
@@ -7,9 +9,10 @@ export const API_CONFIG = {
     VACANCIES: "/api/Vacancy",
     CONTACT: "/api/Contact",
   },
-  CONTACT_EMAIL: "arsenalsadn@ukr.net",
+  CONTACT_EMAIL: "dima.shavronskyi@gmail.com",
 };
 
 export const getApiUrl = (endpoint: keyof typeof API_CONFIG.ENDPOINTS) => {
-  return `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS[endpoint]}`;
+  const base = API_CONFIG.BASE_URL.replace(/\/$/, ""); // прибрати кінцевий слеш
+  return `${base}${API_CONFIG.ENDPOINTS[endpoint]}`;
 };

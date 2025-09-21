@@ -2,8 +2,6 @@
 using BrigadeWebService_BLL.Services.Interfaces;
 using BrigadeWebService_DAL.Data;
 using BrigadeWebService_DAL.Entities;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 namespace BrigadeWebService_API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]/")]
+    [Route("api/[controller]")]
     public class AuthController : Controller
     {
         private readonly AppDbContext _db;
