@@ -1,44 +1,75 @@
+version: "3.9"
+
 services:
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: brigadeweb-db
     environment:
-      - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD}
-      - MSSQL_PID=Developer
-    ports:
-      - "1433:1433"
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+      MSSQL_PID: Developer
     volumes:
       - mssqldata:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "bash -lc ':</dev/tcp/127.0.0.1/1433'"]
+      interval: 10s
+      timeout: 3s
+      retries: 30
+    restart: unless-stopped
+    networks: [appnet]
 
   api:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    container_name: brigadeweb-api
     env_file:
       - .env
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=${DB_CONN}
-      - Jwt__Key=${JWT__Key}
-      - Jwt__Issuer=${JWT__Issuer}
-      - Jwt__Audience=${JWT__Audience}
-      - AWS__Region=${AWS__Region}
-      - AWS__AccessKey=${AWS__AccessKey}
-      - AWS__SecretKey=${AWS__SecretKey}
+      ASPNETCORE_ENVIRONMENT: Production         # <- на сервері прод
+      ConnectionStrings__DefaultConnection: ${DB_CONN}
+      Jwt__Key: ${JWT__Key}
+      Jwt__Issuer: ${JWT__Issuer}
+      Jwt__Audience: ${JWT__Audience}
+      AWS__Region: ${AWS__Region}
+      AWS__AccessKey: ${AWS__AccessKey}
+      AWS__SecretKey: ${AWS__SecretKey}
     depends_on:
-      - db
-    ports:
-      - "5000:8080"
-
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    networks: [appnet]
 
   web:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    depends_on:
-      - api
+    container_name: brigadeweb-web
+    depends_on: [api]
+    restart: unless-stopped
+    networks: [appnet]
+
+  caddy:
+    image: caddy:2
+    container_name: brigadeweb-caddy
+    depends_on: [web, api]
     ports:
       - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: ${DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+    networks: [appnet]
 
 volumes:
   mssqldata:
+  caddy_data:
+  caddy_config:
+
+networks:
+  appnet:
+    driver: bridge

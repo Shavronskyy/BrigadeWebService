@@ -1,0 +1,13 @@
+{$DOMAIN} {
+  encode zstd gzip
+
+  # /api -> .NET API на порт 8080 всередині контейнера api
+  handle_path /api/* {
+    reverse_proxy api:8080
+  }
+
+  # все інше -> фронтенд (nginx у контейнері web)
+  handle {
+    reverse_proxy web:80
+  }
+}
