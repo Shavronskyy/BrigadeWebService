@@ -8,7 +8,6 @@ RUN dotnet publish -c Release -o /app
 # run
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
-COPY --from=build /app .
-ENV ASPNETCORE_URLS=http://0.0.0.0:8080
-EXPOSE 8080
-ENTRYPOINT ["dotnet","BrigadeWebService_API.dll"]  # ← твоя DLL
+COPY --from=build /app ./
+# важливо: команда як JSON-масив
+ENTRYPOINT ["dotnet","BrigadeWebService_API.dll"]

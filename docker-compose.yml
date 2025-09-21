@@ -23,6 +23,7 @@ services:
     container_name: brigadeweb-api
     env_file: [.env]
     environment:
+      ASPNETCORE_URLS: http://0.0.0.0:8080
       ASPNETCORE_ENVIRONMENT: Production
       ConnectionStrings__DefaultConnection: ${DB_CONN}
       Jwt__Key: ${JWT__Key}
