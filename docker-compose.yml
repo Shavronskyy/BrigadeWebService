@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -20,13 +18,12 @@ services:
 
   api:
     build:
-      context: ./backend
+      context: ./Backend 
       dockerfile: Dockerfile
     container_name: brigadeweb-api
-    env_file:
-      - .env
+    env_file: [.env]
     environment:
-      ASPNETCORE_ENVIRONMENT: Production         # <- на сервері прод
+      ASPNETCORE_ENVIRONMENT: Production
       ConnectionStrings__DefaultConnection: ${DB_CONN}
       Jwt__Key: ${JWT__Key}
       Jwt__Issuer: ${JWT__Issuer}
@@ -42,7 +39,7 @@ services:
 
   web:
     build:
-      context: ./frontend
+      context: ./Frontend
       dockerfile: Dockerfile
     container_name: brigadeweb-web
     depends_on: [api]
