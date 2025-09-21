@@ -1,0 +1,144 @@
+.footer {
+  background: #000000 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  min-height: 100px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  background: #000000 !important;
+  width: 100%;
+}
+
+.footer-content {
+  padding: 15px 0 10px 0;
+  background: #000000 !important;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  background: #000000 !important;
+}
+
+.footer-link {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  background: #000000 !important;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+}
+
+.facebook-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.2em;
+}
+
+.footer-separator {
+  color: #666666;
+  font-size: 0.9rem;
+  background: #000000 !important;
+}
+
+.footer-contact {
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  background: #000000 !important;
+}
+
+.facebook-icon {
+  width: 18px;
+  height: 18px;
+  fill: #e0e0e0;
+  transition: fill 0.3s ease;
+  vertical-align: middle;
+  margin-bottom: 1px;
+}
+
+.facebook-link:hover .facebook-icon {
+  fill: #ffffff;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 0;
+  background: #000000 !important;
+}
+
+.footer-bottom-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: #000000 !important;
+}
+
+.footer-bottom p {
+  color: #b0b0b0;
+  font-size: 0.85rem;
+  margin: 0;
+  background: #000000 !important;
+}
+
+.footer-motto {
+  font-weight: 600;
+  color: #ffffff !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: #000000 !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .footer-links {
+    gap: 10px;
+  }
+
+  .footer-link,
+  .footer-contact,
+  .footer-separator {
+    font-size: 0.85rem;
+  }
+
+  .footer-bottom-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+  }
+
+  .footer-bottom p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-container {
+    padding: 0 15px;
+  }
+
+  .footer-links {
+    gap: 8px;
+  }
+
+  .footer-link,
+  .footer-contact,
+  .footer-separator {
+    font-size: 0.8rem;
+  }
+}

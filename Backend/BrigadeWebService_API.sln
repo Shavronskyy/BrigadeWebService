@@ -1,0 +1,36 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36408.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrigadeWebService_API", "BrigadeWebService_API\BrigadeWebService_API.csproj", "{F5231772-E333-4AAC-B720-F5D42C222AE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrigadeWebService_BLL", "BrigadeWebService_BLL\BrigadeWebService_BLL.csproj", "{09D51C8C-DEE2-4150-B700-816E2CCE31FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrigadeWebService_DAL", "BrigadeWebService_DAL\BrigadeWebService_DAL.csproj", "{067BA8C2-DFB1-4741-992B-00499F3DE103}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5231772-E333-4AAC-B720-F5D42C222AE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5231772-E333-4AAC-B720-F5D42C222AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5231772-E333-4AAC-B720-F5D42C222AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5231772-E333-4AAC-B720-F5D42C222AE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09D51C8C-DEE2-4150-B700-816E2CCE31FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09D51C8C-DEE2-4150-B700-816E2CCE31FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09D51C8C-DEE2-4150-B700-816E2CCE31FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09D51C8C-DEE2-4150-B700-816E2CCE31FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{067BA8C2-DFB1-4741-992B-00499F3DE103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{067BA8C2-DFB1-4741-992B-00499F3DE103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{067BA8C2-DFB1-4741-992B-00499F3DE103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{067BA8C2-DFB1-4741-992B-00499F3DE103}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A2E8E46-8EA8-4396-837C-BCE2F466F03A}
+	EndGlobalSection
+EndGlobal

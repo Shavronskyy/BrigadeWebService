@@ -1,0 +1,198 @@
+/* Vacancy Application Popup Styles - UNIQUE CLASSES */
+.brigade-vacancy-application-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999 !important;
+  /* No background, no click handling */
+}
+
+.brigade-vacancy-application-content {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+  border: 2px solid #007bff;
+  z-index: 10000 !important;
+}
+
+.vacancy-popup-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.vacancy-popup-close:hover {
+  color: #007bff;
+}
+
+.vacancy-popup-close:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.vacancy-popup-title {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.vacancy-popup-subtitle {
+  color: #007bff;
+  font-size: 16px;
+  margin: 0 0 25px 0;
+  text-align: center;
+  font-weight: 500;
+}
+
+.vacancy-popup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.vacancy-popup-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vacancy-popup-label {
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.vacancy-popup-input {
+  padding: 12px 15px;
+  border: 2px solid #444;
+  border-radius: 8px;
+  background-color: #333;
+  color: #fff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.vacancy-popup-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.vacancy-popup-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.vacancy-popup-input::placeholder {
+  color: #888;
+}
+
+.vacancy-popup-submit-btn {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+
+.vacancy-popup-submit-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+.vacancy-popup-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.vacancy-popup-success {
+  background-color: #28a745;
+  color: white;
+  padding: 12px 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 15px;
+  animation: slideIn 0.3s ease;
+}
+
+.vacancy-popup-error {
+  background-color: #dc3545;
+  color: white;
+  padding: 12px 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 15px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .vacancy-popup-content {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .vacancy-popup-title {
+    font-size: 20px;
+  }
+
+  .vacancy-popup-subtitle {
+    font-size: 14px;
+  }
+
+  .vacancy-popup-input {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .vacancy-popup-submit-btn {
+    padding: 12px 25px;
+    font-size: 14px;
+  }
+}
