@@ -36,9 +36,6 @@ namespace BrigadeWebService_API.Controllers
         }
 
         [HttpPost("register")]
-        [AllowAnonymous]
-        [ProducesResponseType(typeof(RegisterResponse), StatusCodes.Status201Created)]
-        [ProducesResponseType(typeof(object), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request, CancellationToken ct)
         {
             if (!ModelState.IsValid)
