@@ -8,6 +8,7 @@ import Contacts from "./components/Contacts";
 import Vacancies from "./components/Vacancies";
 import Support from "./components/Support";
 import Login from "./components/Login";
+import Register from "./components/Register";
 import Admin from "./components/Admin";
 import "./App.css";
 import mainBackImage from "./img/backgrounds/Home/main-back.jpg";
@@ -34,6 +35,7 @@ function App() {
             <Route path="/vacancies" element={<Vacancies />} />
             <Route path="/support" element={<Support />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route
               path="/admin"
               element={

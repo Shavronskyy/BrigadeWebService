@@ -160,6 +160,21 @@
   box-shadow: 0 5px 15px var(--shadow-brown);
 }
 
+.register-link {
+  background: transparent;
+  border: 2px solid var(--military-green);
+  color: var(--text-primary);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.register-link:hover {
+  background: var(--military-green);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px var(--shadow-green);
+}
+
 .admin-link {
   background: var(--military-brown);
   border: 2px solid var(--border-secondary);

@@ -69,7 +69,7 @@ const Header: React.FC = () => {
             </li>
           </ul>
 
-          {isAuthenticated && (
+          {isAuthenticated ? (
             <div className="auth-buttons">
               {isAdmin && (
                 <Link
@@ -95,6 +95,23 @@ const Header: React.FC = () => {
               >
                 <img src={logoutIcon} alt="Вийти" className="icon-image" />
               </button>
+            </div>
+          ) : (
+            <div className="auth-buttons">
+              <Link
+                to="/login"
+                className="nav-link login-link"
+                onClick={closeMenu}
+              >
+                Увійти
+              </Link>
+              <Link
+                to="/register"
+                className="nav-link register-link"
+                onClick={closeMenu}
+              >
+                Реєстрація
+              </Link>
             </div>
           )}
         </nav>
