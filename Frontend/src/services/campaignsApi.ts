@@ -25,7 +25,9 @@ export interface CampaignCreateModel {
 }
 
 class CampaignsApiService {
-  private baseUrl = getApiUrl("CAMPAIGNS");
+  private get baseUrl() {
+    return getApiUrl("CAMPAIGNS");
+  }
 
   async getAllCampaigns(): Promise<Campaign[]> {
     try {

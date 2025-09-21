@@ -17,7 +17,9 @@ export interface Report extends ReportCreateModel {
 }
 
 class ReportsApiService {
-  private baseUrl = getApiUrl("REPORTS");
+  private get baseUrl() {
+    return getApiUrl("REPORTS");
+  }
 
   private formatImageUrl(url: string): string {
     if (!url) return "";

@@ -18,7 +18,9 @@ export interface Vacancy extends VacancyCreateModel {
 }
 
 class VacanciesApiService {
-  private baseUrl = getApiUrl("VACANCIES");
+  private get baseUrl() {
+    return getApiUrl("VACANCIES");
+  }
 
   async getAllVacancies(): Promise<Vacancy[]> {
     try {

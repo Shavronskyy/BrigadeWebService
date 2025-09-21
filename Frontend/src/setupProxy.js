@@ -1,8 +1,8 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
-const { API_CONFIG } = require("./config/api.js");
 
 module.exports = function (app) {
-  const API_BASE_URL = API_CONFIG.BASE_URL;
+  // Use a fallback URL for the proxy target since BASE_URL is empty for frontend
+  const API_BASE_URL = "http://127.0.0.1:5000";
   console.log(
     `[setupProxy] Configuring proxy for auth and other endpoints to ${API_BASE_URL}`
   );

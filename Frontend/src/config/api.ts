@@ -16,3 +16,5 @@ export const getApiUrl = (endpoint: keyof typeof API_CONFIG.ENDPOINTS) => {
   const base = API_CONFIG.BASE_URL.replace(/\/$/, ""); // прибрати кінцевий слеш
   return `${base}${API_CONFIG.ENDPOINTS[endpoint]}`;
 };
+
+export default { API_CONFIG, getApiUrl };

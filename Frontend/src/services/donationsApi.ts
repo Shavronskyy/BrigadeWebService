@@ -47,7 +47,9 @@ export interface ReportCreateModel {
 }
 
 class DonationsApiService {
-  private baseUrl = getApiUrl("DONATIONS");
+  private get baseUrl() {
+    return getApiUrl("DONATIONS");
+  }
 
   private formatImageUrl(url: string): string {
     if (!url) return "";
@@ -479,9 +481,12 @@ class DonationsApiService {
   async deleteReport(reportId: number): Promise<void> {
     try {
       console.log("Deleting report ID:", reportId);
-      const response = await fetch(`${API_CONFIG.BASE_URL}/api/Reports/delete/${reportId}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `${API_CONFIG.BASE_URL}/api/Reports/delete/${reportId}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       console.log("Delete report response status:", response.status);
 
