@@ -51,9 +51,11 @@ const Vacancies: React.FC = () => {
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
         minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
-      <div className="content-section">
+      <div className="content-section" style={{ flex: 1 }}>
         <div className="container">
           <div className="vacancies-block">
             <h2>Відкриті вакансії</h2>

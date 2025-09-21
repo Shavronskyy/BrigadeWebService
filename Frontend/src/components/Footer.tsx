@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
 
         <div className="footer-bottom">
           <div className="footer-bottom-content">
-            <p>&copy; 2024 Бригада. Всі права захищені.</p>
+            <p>&copy; 2025 АРСЕНАЛ САДн ОПБр. Всі права захищені.</p>
             <p className="footer-motto">Слава Україні! Героям слава!</p>
           </div>
         </div>

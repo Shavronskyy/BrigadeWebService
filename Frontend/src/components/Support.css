@@ -275,23 +275,42 @@
     padding: 60px 0;
   }
 
+  .container {
+    padding: 0 15px;
+  }
+
+  .support-header {
+    padding: 25px 20px;
+    margin-bottom: 40px;
+  }
+
   .support-header h1 {
     font-size: 2rem;
+  }
+
+  .campaigns-list {
+    padding: 30px 15px;
+    margin: 0 -15px;
+    border-radius: 15px;
   }
 
   .campaign-card {
     flex-direction: column;
     min-height: auto;
+    margin-bottom: 25px;
   }
 
   .campaign-image {
     width: 100%;
     min-width: auto;
     height: 200px;
+    margin: 8px;
+    border-radius: 8px;
   }
 
   .campaign-content {
     padding: 20px;
+    margin: 8px;
   }
 
   .campaign-title {
@@ -300,15 +319,105 @@
 
   .campaign-goal {
     font-size: 1rem;
+    padding: 8px 12px;
   }
 
   .campaign-description p {
     font-size: 0.9rem;
   }
 
+  .campaign-link-btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+
+  .reports-button {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
+
   .completed-overlay span {
     font-size: 1.2rem;
     padding: 15px;
+  }
+
+  .loading,
+  .no-campaigns {
+    padding: 60px 15px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-section {
+    padding: 50px 0;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  .support-header {
+    padding: 20px 15px;
+    margin-bottom: 30px;
+  }
+
+  .support-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .campaigns-list {
+    padding: 25px 10px;
+    margin: 0 -10px;
+    border-radius: 12px;
+  }
+
+  .campaign-card {
+    margin-bottom: 20px;
+  }
+
+  .campaign-image {
+    height: 180px;
+    margin: 5px;
+  }
+
+  .campaign-content {
+    padding: 15px;
+    margin: 5px;
+  }
+
+  .campaign-title {
+    font-size: 1.2rem;
+  }
+
+  .campaign-goal {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+
+  .campaign-description p {
+    font-size: 0.85rem;
+  }
+
+  .campaign-link-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .reports-button {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+
+  .completed-overlay span {
+    font-size: 1.1rem;
+    padding: 12px;
+  }
+
+  .loading,
+  .no-campaigns {
+    padding: 50px 10px;
+    font-size: 1rem;
   }
 }
 
