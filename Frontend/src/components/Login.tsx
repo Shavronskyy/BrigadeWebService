@@ -51,7 +51,7 @@ const Login: React.FC = () => {
 
     try {
       // Call backend API directly
-      const url = `${API_CONFIG.BASE_URL}/api/Auth/login`;
+      const url = `/api/Auth/login`;
       const isEmail = formData.username.includes("@");
       const requestBody = isEmail
         ? { email: formData.username, password: formData.password }

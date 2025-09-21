@@ -61,7 +61,7 @@ const Register: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const url = `${API_CONFIG.BASE_URL}/api/Auth/register`;
+      const url = `/api/Auth/register`;
       console.log("Sending registration request to:", url);
       console.log("Request body:", {
         username: formData.username,
