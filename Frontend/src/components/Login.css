@@ -143,37 +143,6 @@
   margin: 0 0 15px 0;
 }
 
-.register-link-btn {
-  background: transparent;
-  color: #8b4513;
-  border: 2px solid #8b4513;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.register-link-btn:hover:not(:disabled) {
-  background: #8b4513;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
-}
-
-.register-link-btn:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.register-link-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-}
-
 /* Responsive Design */
 @media (max-width: 480px) {
   .login-container {

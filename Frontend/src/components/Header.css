@@ -145,36 +145,6 @@
   box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
 }
 
-.login-link {
-  background: var(--military-green);
-  border: none;
-  color: var(--text-primary);
-  font-weight: 600;
-  box-shadow: 0 3px 10px var(--shadow-green);
-}
-
-.login-link:hover {
-  background: var(--military-brown);
-  color: var(--text-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px var(--shadow-brown);
-}
-
-.register-link {
-  background: transparent;
-  border: 2px solid var(--military-green);
-  color: var(--text-primary);
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.register-link:hover {
-  background: var(--military-green);
-  color: var(--text-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px var(--shadow-green);
-}
-
 .admin-link {
   background: var(--military-brown);
   border: 2px solid var(--border-secondary);

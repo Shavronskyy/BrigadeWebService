@@ -196,13 +196,6 @@ const Login: React.FC = () => {
 
         <div className="login-footer">
           <p>Тільки для персоналу бригади</p>
-          <button
-            className="register-link-btn"
-            onClick={() => navigate("/register")}
-            disabled={isLoading}
-          >
-            Зареєструватися
-          </button>
         </div>
       </div>
     </div>
