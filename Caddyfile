@@ -5,9 +5,13 @@ www.{$DOMAIN} {
 {$DOMAIN} {
   encode zstd gzip
 
-  handle /api/* {
-    reverse_proxy api:8080
+  log {
+    output stdout
+    format console
   }
+
+  @api path /api/*
+  reverse_proxy @api api:8080
 
   handle {
     reverse_proxy web:80
