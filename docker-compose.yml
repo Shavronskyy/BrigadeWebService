@@ -18,7 +18,7 @@ services:
 
   api:
     build:
-      context: ./Backend 
+      context: ./Backend
       dockerfile: Dockerfile
     container_name: brigadeweb-api
     env_file: [.env]
@@ -35,6 +35,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    ports:
+      - "5000:8080"   # <-- тепер коректно під api
     restart: unless-stopped
     networks: [appnet]
 
