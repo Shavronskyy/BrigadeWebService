@@ -3,6 +3,7 @@ const BASE_URL = "";
 export const API_CONFIG = {
   BASE_URL,
   ENDPOINTS: {
+    AUTH: "/api/Auth",
     DONATIONS: "/api/Donations",
     CAMPAIGNS: "/api/Campaigns",
     REPORTS: "/api/Reports",
