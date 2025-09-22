@@ -11,7 +11,7 @@ namespace BrigadeWebService_BLL.Services.Realizations.AWS
         private readonly string _bucket;
         private readonly string _basePrefix;
         private static readonly HashSet<string> Allowed = new(new[] { "image/jpeg", "image/png", "image/webp", "image/heic" });
-        private const long MaxSize = 25L * 1024 * 1024;
+        private const long MaxSize = 100L * 1024 * 1024;
 
         public S3ImageService(IAmazonS3 s3, IConfiguration cfg)
         {
