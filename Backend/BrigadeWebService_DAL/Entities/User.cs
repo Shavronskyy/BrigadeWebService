@@ -14,6 +14,6 @@ namespace BrigadeWebService_DAL.Entities
         public string PasswordHash { get; set; } = string.Empty;
 
         [MaxLength(50)]
-        public string Role { get; set; } = "User";
+        public string Role { get; set; } = "admin";
     }
 }
