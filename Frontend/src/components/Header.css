@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 60px;
+  min-height: 46px;
   position: relative;
 }
 
@@ -32,14 +32,14 @@
 }
 
 .logo-image {
-  height: 60px;
+  height: 70px;
   width: auto;
-  max-width: 240px;
+  max-width: 280px;
   object-fit: contain;
   transition: transform 0.3s ease;
   pointer-events: none;
   display: block;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+  transform: scale(1.1);
 }
 
 .logo-image text {
@@ -47,7 +47,7 @@
 }
 
 .logo-image:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
 .burger-menu {

@@ -17,6 +17,9 @@ const Home: React.FC = () => {
       >
         <div className="hero-content">
           <h1>АРСЕНАЛ</h1>
+          <h2 className="hero-subtitle">
+            САМОХІДНИЙ АРТИЛЕРІЙСЬКИЙ ДІВІЗІОН ОКРЕМОЇ ПРЕЗИДЕНТСЬКОЇ БРИГАДИ
+          </h2>
           <div className="hero-actions">
             <div className="hero-left">
               <button
