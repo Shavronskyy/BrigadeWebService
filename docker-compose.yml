@@ -29,6 +29,7 @@ services:
       Jwt__Key: ${JWT__Key}
       Jwt__Issuer: ${JWT__Issuer}
       Jwt__Audience: ${JWT__Audience}
+      Jwt__ExpiresMinutes: ${JWT__ExpiresMinutes}
       AWS__Region: ${AWS__Region}
       AWS__AccessKey: ${AWS__AccessKey}
       AWS__SecretKey: ${AWS__SecretKey}
