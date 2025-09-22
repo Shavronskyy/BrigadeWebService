@@ -44,6 +44,7 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
+  max-width: 100%;
 }
 
 .support-header h1 {
@@ -63,8 +64,8 @@
   backdrop-filter: blur(20px);
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
   width: 100%;
-  max-width: none;
-  margin: 0 -20px;
+  max-width: 100%;
+  margin: 0 auto;
   padding: 40px 20px;
   min-height: 600px;
   border-radius: 20px;
