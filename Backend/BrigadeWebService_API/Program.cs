@@ -33,9 +33,19 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     ));
 
 // JWT
-var jwtConfig = builder.Configuration.GetSection("Jwt");
-var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfig["Key"]!));
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+var jwtSection = builder.Configuration.GetSection("Jwt");
+
+var jwtKey = jwtSection["Key"];
+if (string.IsNullOrWhiteSpace(jwtKey))
+    throw new InvalidOperationException("Missing Jwt:Key (set it via env JWT__Key).");
+
+var jwtIssuer = jwtSection["Issuer"] ?? "app";
+var jwtAudience = jwtSection["Audience"] ?? "app";
+
+var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opt =>
     {
         opt.TokenValidationParameters = new TokenValidationParameters
@@ -44,9 +54,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            ValidIssuer = jwtConfig["Issuer"],
-            ValidAudience = jwtConfig["Audience"],
-            IssuerSigningKey = key,
+
+            ValidIssuer = jwtIssuer,
+            ValidAudience = jwtAudience,
+            IssuerSigningKey = signingKey,
+
             ClockSkew = TimeSpan.Zero
         };
     });
