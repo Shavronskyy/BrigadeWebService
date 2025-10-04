@@ -10,7 +10,8 @@ namespace BrigadeWebService_BLL.Mapper.Images
         public ImageProfile()
         {
             CreateMap<Image, ImageDto>()
-            .ForMember(d => d.Url, o => o.MapFrom<ImageUrlResolver>());
+            .ForMember(d => d.Url, o => o.MapFrom<ImageUrlResolver>()).ReverseMap();
+            CreateMap<ImageCreateDto, Image>().ReverseMap();
         }
     }
 }

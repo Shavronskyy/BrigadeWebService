@@ -50,7 +50,7 @@ namespace BrigadeWebService_BLL.Services.Realizations.Base
             return await _repository.SaveChangesAsync() == 1 ? vacancy : throw new InvalidOperationException($"Exception with updating of object type of {model}"); ;
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public virtual async Task<bool> DeleteAsync(int id, CancellationToken ct)
         {
             var vacancy = await _repository.GetByIdAsync(id);
             if (vacancy != null)

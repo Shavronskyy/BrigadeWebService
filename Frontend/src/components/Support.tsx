@@ -225,9 +225,7 @@ const Support: React.FC = () => {
                                   >
                                     <img
                                       src={imageDto.url}
-                                      alt={`${report.title} - Image ${
-                                        imgIndex + 1
-                                      }`}
+                                      alt={`${report.title} - ${imgIndex + 1}`}
                                       style={{
                                         maxWidth: "120px",
                                         maxHeight: "80px",

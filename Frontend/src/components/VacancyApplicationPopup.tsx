@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./VacancyApplicationPopup.css";
 import {
   sendVacancyApplication,
-  VacancyApplicationData,
+  // VacancyApplicationData,
 } from "../services/vacancyApplicationApi";
 
 interface VacancyApplicationPopupProps {

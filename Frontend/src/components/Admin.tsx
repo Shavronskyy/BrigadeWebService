@@ -7,7 +7,7 @@ import AdminDonations from "./AdminDonations";
 type AdminSection = "vacancies" | "donations";
 
 const Admin: React.FC = () => {
-  const { user, logout } = useAuth();
+  // const { user, logout } = useAuth(); // Currently unused
   const [activeSection, setActiveSection] = useState<AdminSection>("vacancies");
 
   return (

@@ -40,13 +40,11 @@ const AdminDonations: React.FC = () => {
   const [isImageViewerOpen, setIsImageViewerOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState("");
   const [selectedImageAlt, setSelectedImageAlt] = useState("");
-  const [reportToDelete, setReportToDelete] = useState<any | null>(null);
-  const [isDeleteReportModalOpen, setIsDeleteReportModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [notification, setNotification] = useState<{
     message: string;
-    type: "success" | "error";
+    type: "success" | "error" | "info";
   } | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<{
     isOpen: boolean;
@@ -256,36 +254,6 @@ const AdminDonations: React.FC = () => {
     setSelectedImageAlt("");
   };
 
-  const openDeleteReportModal = (report: any) => {
-    setReportToDelete(report);
-    setIsDeleteReportModalOpen(true);
-  };
-
-  const closeDeleteReportModal = () => {
-    setIsDeleteReportModalOpen(false);
-    setReportToDelete(null);
-  };
-
-  const confirmDeleteReport = async () => {
-    if (!reportToDelete) return;
-
-    try {
-      await donationsApiService.deleteReport(reportToDelete.id);
-      showNotification("Звіт успішно видалено", "success");
-
-      // Refresh the donations list to update the reports
-      const data = await donationsApiService.getAllDonations();
-      setDonations(data);
-
-      closeDeleteReportModal();
-    } catch (error) {
-      console.error("Failed to delete report:", error);
-      const errorMessage =
-        error instanceof Error ? error.message : "Помилка видалення звіту";
-      showNotification(errorMessage, "error");
-    }
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("AdminDonations: Form submission started");
@@ -385,7 +353,7 @@ const AdminDonations: React.FC = () => {
             console.error("DonationsController test failed:", testError);
           }
 
-          const createWithImageUrl = `${API_CONFIG.BASE_URL}/api/Donations/create-with-image`;
+          const createWithImageUrl = `${API_CONFIG.BASE_URL}/api/Donations/create`;
           console.log("Sending request to:", createWithImageUrl);
 
           let r;
@@ -519,20 +487,15 @@ const AdminDonations: React.FC = () => {
           console.error("ReportsController test failed:", testError);
         }
 
-        // Use ReportsController create-with-images endpoint
-        console.log(
-          "Creating report using ReportsController create-with-images endpoint"
-        );
+        // Use ReportsController create endpoint
+        console.log("Creating report using ReportsController create endpoint");
 
         let response;
         try {
-          response = await fetch(
-            `${API_CONFIG.BASE_URL}/api/Reports/create-with-images`,
-            {
-              method: "POST",
-              body: formData,
-            }
-          );
+          response = await fetch(`${API_CONFIG.BASE_URL}/api/Reports/create`, {
+            method: "POST",
+            body: formData,
+          });
 
           console.log("Response received:", response.status);
         } catch (fetchError) {
@@ -584,20 +547,32 @@ const AdminDonations: React.FC = () => {
     }
   };
 
-  const deleteReport = async (donationId: number) => {
-    // TODO: Implement report deletion when backend endpoint is available
-    showNotification("Видалення звітів поки не реалізовано", "error");
-  };
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const deleteIndividualReport = async (
     donationId: number,
     reportId: number
   ) => {
-    // TODO: Implement individual report deletion when backend endpoint is available
-    showNotification("Видалення окремого звіту поки не реалізовано", "error");
+    // Individual report deletion is handled by the Reports API
+    // This function is kept for potential future use
+    try {
+      await donationsApiService.deleteReport(reportId);
+      showNotification("Звіт успішно видалено", "success");
+
+      // Refresh the donations list to update the reports
+      const data = await donationsApiService.getAllDonations();
+      setDonations(data);
+    } catch (error) {
+      console.error("Failed to delete individual report:", error);
+      const errorMessage =
+        error instanceof Error ? error.message : "Помилка видалення звіту";
+      showNotification(errorMessage, "error");
+    }
   };
 
-  const showNotification = (message: string, type: "success" | "error") => {
+  const showNotification = (
+    message: string,
+    type: "success" | "error" | "info"
+  ) => {
     setNotification({ message, type });
     setTimeout(() => setNotification(null), 3000);
   };
@@ -790,15 +765,6 @@ const AdminDonations: React.FC = () => {
                     >
                       📊
                     </button>
-                    {donation.reports && donation.reports.length > 0 && (
-                      <button
-                        className="action-btn delete-report"
-                        onClick={() => deleteReport(donation.id)}
-                        title="Видалити звіти"
-                      >
-                        🗑️
-                      </button>
-                    )}
                     <button
                       className="action-btn toggle"
                       onClick={() => toggleDonationStatus(donation.id)}
@@ -1077,9 +1043,7 @@ const AdminDonations: React.FC = () => {
                                   >
                                     <img
                                       src={imageDto.url}
-                                      alt={`${report.title} - Image ${
-                                        imgIndex + 1
-                                      }`}
+                                      alt={`${report.title} - ${imgIndex + 1}`}
                                       style={{
                                         maxWidth: "150px",
                                         maxHeight: "100px",
@@ -1127,13 +1091,6 @@ const AdminDonations: React.FC = () => {
                           title="Редагувати звіт"
                         >
                           ✏️
-                        </button>
-                        <button
-                          className="action-btn delete"
-                          onClick={() => openDeleteReportModal(report)}
-                          title="Видалити звіт"
-                        >
-                          🗑️
                         </button>
                       </div>
                     </div>
@@ -1216,40 +1173,6 @@ const AdminDonations: React.FC = () => {
               alt={selectedImageAlt}
               className="image-viewer-img"
             />
-          </div>
-        </div>
-      )}
-
-      {/* Delete Report Confirmation Modal */}
-      {isDeleteReportModalOpen && reportToDelete && (
-        <div className="modal-overlay" onClick={closeDeleteReportModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h3>Видалити звіт</h3>
-              <button className="modal-close" onClick={closeDeleteReportModal}>
-                ×
-              </button>
-            </div>
-            <div className="modal-body">
-              <p>
-                Ви впевнені, що хочете видалити звіт "
-                <strong>{reportToDelete.title}</strong>"?
-              </p>
-              <p style={{ color: "#ff6b6b", fontSize: "0.9em" }}>
-                Ця дія не може бути скасована.
-              </p>
-            </div>
-            <div className="modal-actions">
-              <button className="cancel-btn" onClick={closeDeleteReportModal}>
-                Скасувати
-              </button>
-              <button
-                className="confirm-delete-btn"
-                onClick={confirmDeleteReport}
-              >
-                Видалити
-              </button>
-            </div>
           </div>
         </div>
       )}

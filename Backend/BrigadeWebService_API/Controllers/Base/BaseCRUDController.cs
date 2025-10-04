@@ -25,14 +25,14 @@ namespace BrigadeWebService_API.Controllers.Base
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody] TCreateModel model)
+        public virtual async Task<IActionResult> Create([FromBody] TCreateModel model, CancellationToken ct)
         {
             if (model == null)
             {
                 return BadRequest("Invalid model");
             }
             var donation = await _service.CreateAsync(model);
-            return donation != null ? Ok(donation) : BadRequest("Failed to create donation");
+            return donation != null ? Ok(donation) : BadRequest("Failed to create");
         }
 
         [HttpPut("update")]

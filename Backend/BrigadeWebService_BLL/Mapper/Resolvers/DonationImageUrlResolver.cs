@@ -11,6 +11,6 @@ namespace BrigadeWebService_BLL.Mapper.Resolvers
         public DonationImageUrlResolver(S3ImageService s3) { _s3 = s3; }
 
         public string? Resolve(Donation src, DonationDto dest, string? destMember, ResolutionContext context)
-            => src.Image?.ObjectKey is string key ? _s3.CreatePresignedGet(key) : null;
+            => src.Image?.ObjectKey is string key ? _s3.CreatePreassignedGet(key) : null;
     }
 }

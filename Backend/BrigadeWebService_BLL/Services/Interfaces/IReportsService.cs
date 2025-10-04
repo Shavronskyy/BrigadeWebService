@@ -8,7 +8,6 @@ namespace BrigadeWebService_BLL.Services.Interfaces
     public interface IReportsService : IBaseCrudService<Report, ReportCreateModel, ReportUpdateModel>
     {
         Task<IEnumerable<Report>> GetReportsByDonationIdAsync(int donationId);
-        Task<(int reportId, IEnumerable<(int imageId, string viewUrl)>)> CreateWithImagesAsync(
-        ReportCreateModel model, IEnumerable<IFormFile> photos, CancellationToken ct);
+        Task<int> CreateAsync(ReportCreateModel model, IEnumerable<IFormFile> photos, CancellationToken ct);
     }
 }

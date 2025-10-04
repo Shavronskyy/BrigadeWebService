@@ -19,17 +19,17 @@ namespace BrigadeWebService_API.Controllers
         }
 
         [HttpGet("getAllDto")]
-        public async Task<ActionResult<IEnumerable<DonationDto>>> GetAll(CancellationToken ct)
+        public async Task<ActionResult<IEnumerable<DonationDto>>> GetAllAsync(CancellationToken ct)
         {
             var list = await _donationService.GetAllDtoAsync(ct);
-            return Ok(list);
+            return (list?.Any() ?? null) != null ? Ok(list) : NotFound();
         }
 
         [HttpGet("getDtoById/{id:int}")]
-        public async Task<ActionResult<DonationDto>> GetOne(int id, CancellationToken ct)
+        public async Task<ActionResult<DonationDto>> GetDtoByIdAsync(int id, CancellationToken ct)
         {
             var dto = await _donationService.GetByIdDtoAsync(id, ct);
-            return dto is null ? NotFound() : Ok(dto);
+            return dto != null ? Ok(dto) : NotFound();
         }
 
         [HttpPost("{id}/createReport")]
@@ -50,31 +50,16 @@ namespace BrigadeWebService_API.Controllers
         public async Task<IActionResult> GetReportsDtoByDonationId([FromRoute] int id)
         {
             var report = await _donationService.GetReportsDtoByDonationIdAsync(id);
-            return report.Any() ? Ok(report) : BadRequest("Failed to create report for donation");
+            return Ok(report);
         }
 
-        [HttpPost("create-with-image")]
+        [HttpPost("create")]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> CreateWithImage(
-        [FromForm] string Title,
-        [FromForm] string Description,
-        [FromForm] long Goal,
-        [FromForm] string DonationLink,
-        [FromForm] IFormFile? Photo, // необов’язково
-        CancellationToken ct)
+        public override async Task<IActionResult> Create([FromForm] DonationCreateModel model, CancellationToken ct)
         {
-            var model = new DonationCreateModel
-            {
-                Title = Title,
-                Description = Description,
-                Goal = Goal,
-                CreationDate = DateTime.UtcNow,
-                DonationLink = DonationLink
-            };
+            var donationId = await _donationService.CreateAsync(model, model.Photo, ct);
 
-            var (id, imageUrl) = await _donationService.CreateWithImageAsync(model, Photo, ct);
-
-            return id > 0 ? Created() : BadRequest();
+            return donationId > 0 ? Created() : BadRequest();
         }
     }
 }

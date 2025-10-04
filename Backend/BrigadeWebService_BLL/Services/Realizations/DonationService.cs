@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using BrigadeWebService_BLL.Dto.Donations;
+using BrigadeWebService_BLL.Dto.Images;
 using BrigadeWebService_BLL.Dto.Reports;
+using BrigadeWebService_BLL.Enums;
 using BrigadeWebService_BLL.Services.Interfaces;
 using BrigadeWebService_BLL.Services.Realizations.AWS;
 using BrigadeWebService_BLL.Services.Realizations.Base;
-using BrigadeWebService_DAL.Data;
 using BrigadeWebService_DAL.Entities;
 using BrigadeWebService_DAL.Repositories.Interfaces.Donations;
-using BrigadeWebService_DAL.Repositories.Interfaces.Images;
 using Microsoft.AspNetCore.Http;
 
 namespace BrigadeWebService_BLL.Services.Realizations
@@ -16,33 +16,47 @@ namespace BrigadeWebService_BLL.Services.Realizations
     {
         private readonly IDonationsRepository _donationRepository;
         private readonly IReportsService _reportsService;
-        private readonly IImagesRepository _imagesRepository;
+        private readonly IImageService _imageService;
         private readonly S3ImageService _s3;
-        private readonly AppDbContext _db;
         private IMapper _mapper;
 
         public DonationService(IDonationsRepository donationRepository, IMapper mapper,
-                               IReportsService reportsService, IImagesRepository imagesRepository,
-                               S3ImageService s3, AppDbContext db)
+                               IReportsService reportsService, S3ImageService s3, IImageService imageService)
             : base(donationRepository, mapper)
         {
             _donationRepository = donationRepository;
             _reportsService = reportsService;
-            _imagesRepository = imagesRepository;
             _s3 = s3;
-            _db = db;
             _mapper = mapper;
+            _imageService = imageService;
+        }
+
+        public override async Task<bool> DeleteAsync(int id, CancellationToken ct)
+        {
+            var donation = await _donationRepository.GetByIdAsync(id);
+            if(donation == null) throw new InvalidOperationException($"Donate with Id: {id} doesnt exist!");
+
+            //remove image
+            if(donation.Image != null)
+                await _imageService.RemoveImage(donation.Image, ct);
+
+            foreach (var report in donation.Reports)
+            {
+                await _reportsService.DeleteAsync(report.Id, ct);
+            }
+
+            return await base.DeleteAsync(id, ct);
         }
 
         public async Task<IEnumerable<DonationDto>> GetAllDtoAsync(CancellationToken ct = default)
         {
-            var donations = await _donationRepository.GetAllWithImageAsync(ct);
+            var donations = await _donationRepository.GetAllAsync(ct);
             return _mapper.Map<IEnumerable<DonationDto>>(donations);
         }
 
         public async Task<DonationDto?> GetByIdDtoAsync(int id, CancellationToken ct = default)
         {
-            var donation = await _donationRepository.GetByIdWithImageAsync(id, ct);
+            var donation = await _donationRepository.GetByIdAsync(id, ct);
             return donation is null ? null : _mapper.Map<DonationDto>(donation);
         }
 
@@ -70,23 +84,17 @@ namespace BrigadeWebService_BLL.Services.Realizations
             return reports != null && reports.Any() ? _mapper.Map<IEnumerable<ReportDto>>(reports) : null;
         }
 
-        public async Task<(int donationId, string? imageUrl)> CreateWithImageAsync(
-        DonationCreateModel model,
-        IFormFile? photo,
-        CancellationToken ct)
+        public async Task<int> CreateAsync(DonationCreateModel model, IFormFile? photo, CancellationToken ct)
         {
-            // 1) створюємо донейшн стандартним методом із базового CRUD
+            // create donation
             var created = await CreateAsync(model) ?? throw new InvalidOperationException("Failed to create donation");
 
-            string? url = null;
-
-            // 2) якщо є файл — вантажимо в S3 і лінкуємо як єдину картинку
             if (photo != null)
             {
-                var (key, etag) = await _s3.UploadForDonationAsync(created.Id, photo, ct);
-
-                // якщо Donation має один-до-одного Image через Donation.ImageId
-                var img = new Image
+                // upload image to s3
+                var (key, etag) = await _s3.UploadImagesAsync(created.Id, photo, Content.Donations, ct);
+                // create image record in database
+                var imageModel = new ImageCreateDto()
                 {
                     ObjectKey = key,
                     ContentType = photo.ContentType,
@@ -97,13 +105,10 @@ namespace BrigadeWebService_BLL.Services.Realizations
                     Donation = created
                 };
 
-                await _imagesRepository.AddAsync(img, ct);
-                await _imagesRepository.SaveAsync(ct);
-
-                url = _s3.CreatePresignedGet(key);
+                await _imageService.CreateImage(imageModel, ct);
             }
 
-            return (created.Id, url);
+            return created.Id;
         }
     }
 }

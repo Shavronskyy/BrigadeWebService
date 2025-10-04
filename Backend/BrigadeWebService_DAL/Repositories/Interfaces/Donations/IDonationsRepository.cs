@@ -5,7 +5,7 @@ namespace BrigadeWebService_DAL.Repositories.Interfaces.Donations
 {
     public interface IDonationsRepository : IRepositoryBase<Donation>
     {
-        Task<IEnumerable<Donation>> GetAllWithImageAsync(CancellationToken ct = default);
-        Task<Donation?> GetByIdWithImageAsync(int id, CancellationToken ct = default);
+        Task<IEnumerable<Donation>> GetAllAsync(CancellationToken ct = default);
+        Task<Donation?> GetByIdAsync(int id, CancellationToken ct = default);
     }
 }

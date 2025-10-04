@@ -89,6 +89,7 @@ builder.Services.AddScoped<IVacancyRepository, VacancyRepository>();
 builder.Services.AddScoped<IReportRepository, ReportRepository>();
 builder.Services.AddScoped<IDonationsRepository, DonationsRepository>();
 builder.Services.AddScoped<IImagesRepository, ImagesRepository>();
+builder.Services.AddScoped<IImageService, ImageService>();
 builder.Services.AddScoped<S3ImageService>();
 
 // CORS (дев режим Ч максимально в≥льно)

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { API_CONFIG } from "../config/api";
 
 export default function DonationImageManager({
@@ -9,7 +9,7 @@ export default function DonationImageManager({
   const [url, setUrl] = useState<string | null>(null);
   const [msg, setMsg] = useState("");
 
-  async function fetchView() {
+  const fetchView = useCallback(async () => {
     const r = await fetch(
       `${API_CONFIG.BASE_URL}/api/images/donations/${donationId}/view`
     );
@@ -19,11 +19,11 @@ export default function DonationImageManager({
     } else {
       setUrl(null);
     }
-  }
+  }, [donationId]);
 
   useEffect(() => {
     fetchView();
-  }, [donationId]);
+  }, [donationId, fetchView]);
 
   async function handleFile(file: File) {
     const fd = new FormData();

@@ -11,10 +11,7 @@ namespace BrigadeWebService_BLL.Services.Interfaces
         Task<bool> CreateReportAsync(int id, ReportCreateModel model);
         Task<bool> ChangeDonationStateAsync(int id);
         Task<IEnumerable<ReportDto>> GetReportsDtoByDonationIdAsync(int donationId);
-        Task<(int donationId, string? imageUrl)> CreateWithImageAsync(
-        DonationCreateModel model,
-        IFormFile? photo,
-        CancellationToken ct);
+        Task<int> CreateAsync(DonationCreateModel model, IFormFile? photo, CancellationToken ct);
         Task<IEnumerable<DonationDto>> GetAllDtoAsync(CancellationToken ct = default);
         Task<DonationDto?> GetByIdDtoAsync(int id, CancellationToken ct = default);
     }

@@ -71,6 +71,11 @@
   color: white;
 }
 
+.notification.info {
+  background: #2196f3;
+  color: white;
+}
+
 .notification-message {
   flex: 1;
   font-size: 0.95rem;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { API_CONFIG } from "../config/api";
 
 type PresignRes = { uploadUrl: string; key: string };
@@ -20,7 +20,7 @@ export default function ReportImagesManager({
   const [msg, setMsg] = useState("");
   const [progress, setProgress] = useState<number>(0);
 
-  async function fetchList() {
+  const fetchList = useCallback(async () => {
     const r = await fetch(
       `${API_CONFIG.BASE_URL}/api/images/reports/${reportId}`
     );
@@ -28,11 +28,11 @@ export default function ReportImagesManager({
       const data = await r.json();
       setImages(data);
     }
-  }
+  }, [reportId]);
 
   useEffect(() => {
     fetchList();
-  }, [reportId]);
+  }, [reportId, fetchList]);
 
   function getImageDims(
     file: File

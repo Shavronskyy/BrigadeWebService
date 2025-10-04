@@ -12,6 +12,6 @@ namespace BrigadeWebService_BLL.Services.Interfaces.Base
         Task<TEntity?> GetByIdAsync(int id);
         Task<TEntity?> CreateAsync(TCreateModel model);
         Task<TEntity?> UpdateAsync(TUpdateModel model);
-        Task<bool> DeleteAsync(int id);
+        Task<bool> DeleteAsync(int id, CancellationToken ct = default);
     }
 }

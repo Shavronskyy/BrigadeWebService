@@ -17,25 +17,14 @@ namespace BrigadeWebService_API.Controllers
             _reportService = reportService;
         }
 
-        [HttpPost("create-with-images")]
+        [HttpPost("create")]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> CreateWithImages([FromForm] string Title,
-                                                      [FromForm] string Description,
-                                                      [FromForm] string Category,
-                                                      [FromForm] int DonationId,
-                                                      [FromForm] List<IFormFile> Photos,
-                                                      CancellationToken ct)
+        public override async Task<IActionResult> Create([FromForm] ReportCreateModel model, CancellationToken ct)
         {
-            var model = new ReportCreateModel
-            {
-                Title = Title,
-                Description  = Description,
-                Category = Category,
-                DonationId = DonationId,
-                CreatedAt = DateTime.UtcNow
-            };
-
-            var (reportId, images) = await _reportService.CreateWithImagesAsync(model, Photos, ct);
+            if (!ModelState.IsValid || model == null)
+                return BadRequest(ModelState);
+            
+            var reportId = await _reportService.CreateAsync(model, model.Photos, ct);
 
             return reportId > 0 ? Created() : BadRequest();
         }

@@ -201,13 +201,10 @@ const AdminReports: React.FC = () => {
             fd.append("Photos", file, file.name);
           }
 
-          const r = await fetch(
-            `${API_CONFIG.BASE_URL}/api/reports/create-with-images`,
-            {
-              method: "POST",
-              body: fd,
-            }
-          );
+          const r = await fetch(`${API_CONFIG.BASE_URL}/api/Reports/create`, {
+            method: "POST",
+            body: fd,
+          });
 
           if (r.ok) {
             const result = await r.json();
