@@ -12,6 +12,9 @@ const Support: React.FC = () => {
   const [isImageViewerOpen, setIsImageViewerOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState("");
   const [selectedImageAlt, setSelectedImageAlt] = useState("");
+  const [expandedDescriptions, setExpandedDescriptions] = useState<{
+    [key: number]: boolean;
+  }>({});
 
   useEffect(() => {
     const fetchDonations = async () => {
@@ -90,6 +93,18 @@ const Support: React.FC = () => {
     setSelectedImageAlt("");
   };
 
+  const toggleDescription = (donationId: number) => {
+    setExpandedDescriptions((prev) => ({
+      ...prev,
+      [donationId]: !prev[donationId],
+    }));
+  };
+
+  const truncateText = (text: string, maxLength: number) => {
+    if (text.length <= maxLength) return text;
+    return text.slice(0, maxLength) + "...";
+  };
+
   return (
     <div className="support-page">
       <div className="content-section">
@@ -124,11 +139,6 @@ const Support: React.FC = () => {
                       )}
                     </div>
                     <div className="campaign-content">
-                      <div className="campaign-date">
-                        {new Date(donation.creationDate).toLocaleDateString(
-                          "uk-UA"
-                        )}
-                      </div>
                       <h3 className="campaign-title">{donation.title}</h3>
                       <div className="campaign-goal">
                         Мета збору:{" "}
@@ -138,7 +148,22 @@ const Support: React.FC = () => {
                         <p>
                           <strong>Опис збору:</strong>
                         </p>
-                        <p>{donation.description}</p>
+                        <p>
+                          {expandedDescriptions[donation.id] ||
+                          donation.description.length <= 200
+                            ? donation.description
+                            : truncateText(donation.description, 200)}
+                        </p>
+                        {donation.description.length > 200 && (
+                          <button
+                            className="show-more-btn"
+                            onClick={() => toggleDescription(donation.id)}
+                          >
+                            {expandedDescriptions[donation.id]
+                              ? "Показати менше"
+                              : "Показати більше"}
+                          </button>
+                        )}
                       </div>
                       {donation.donationLink && !donation.isCompleted && (
                         <div className="campaign-link">

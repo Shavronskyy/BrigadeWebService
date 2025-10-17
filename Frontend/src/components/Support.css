@@ -64,7 +64,7 @@
   backdrop-filter: blur(20px);
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
   width: 100%;
-  max-width: 100%;
+  max-width: 900px;
   margin: 0 auto;
   padding: 40px 20px;
   min-height: 600px;
@@ -213,6 +213,35 @@
   font-weight: 600;
   color: #ffffff;
   margin-bottom: 15px;
+}
+
+.show-more-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(10px);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.show-more-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.show-more-btn:active {
+  transform: translateY(0);
 }
 
 .campaign-link {

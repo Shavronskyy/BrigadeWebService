@@ -67,6 +67,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   overscroll-behavior: none;
+  scrollbar-gutter: stable;
   /* Mobile optimizations */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
