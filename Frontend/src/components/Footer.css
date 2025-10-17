@@ -42,11 +42,12 @@
   color: #ffffff;
 }
 
-.facebook-link {
+.social-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   height: 1.2em;
+  padding: 0 5px;
 }
 
 .footer-separator {
@@ -61,7 +62,7 @@
   background: #000000 !important;
 }
 
-.facebook-icon {
+.social-icon {
   width: 18px;
   height: 18px;
   fill: #e0e0e0;
@@ -70,7 +71,7 @@
   margin-bottom: 1px;
 }
 
-.facebook-link:hover .facebook-icon {
+.social-link:hover .social-icon {
   fill: #ffffff;
 }
 
