@@ -30,22 +30,21 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  isolation: isolate;
+  background: transparent;
 }
 
 .logo-image {
   height: 70px;
   width: auto;
   max-width: 280px;
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease, filter 0.3s ease;
   pointer-events: none;
   display: block;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  image-rendering: pixelated;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+  image-rendering: auto;
+  will-change: auto;
+  isolation: isolate;
+  background: transparent;
 }
 
 .logo-image text {
@@ -237,10 +236,9 @@
     max-width: 260px;
     min-width: 140px;
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    image-rendering: auto;
+    isolation: isolate;
+    background: transparent;
   }
 
   .logo-image:hover {
@@ -342,10 +340,9 @@
     max-width: 230px;
     min-width: 120px;
     filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    image-rendering: auto;
+    isolation: isolate;
+    background: transparent;
   }
 
   .logo-image:hover {
