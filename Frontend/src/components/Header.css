@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 46px;
+  min-height: 70px;
   position: relative;
 }
 
@@ -35,9 +35,9 @@
 }
 
 .logo-image {
-  height: 70px;
+  height: 85px;
   width: auto;
-  max-width: 280px;
+  max-width: 340px;
   transition: opacity 0.3s ease, filter 0.3s ease;
   pointer-events: none;
   display: block;
