@@ -1,0 +1,265 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{09D51C8C-DEE2-4150-B700-816E2CCE31FF}|BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj|c:\\users\\user\\source\\repos\\brigadeweb\\brigadewebservice_bll\\mapper\\reports\\reportprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09D51C8C-DEE2-4150-B700-816E2CCE31FF}|BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj|solutionrelative:brigadewebservice_bll\\mapper\\reports\\reportprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5231772-E333-4AAC-B720-F5D42C222AE5}|BrigadeWebService_API\\BrigadeWebService_API.csproj|c:\\users\\user\\source\\repos\\brigadeweb\\brigadewebservice_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5231772-E333-4AAC-B720-F5D42C222AE5}|BrigadeWebService_API\\BrigadeWebService_API.csproj|solutionrelative:brigadewebservice_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5231772-E333-4AAC-B720-F5D42C222AE5}|BrigadeWebService_API\\BrigadeWebService_API.csproj|c:\\users\\user\\source\\repos\\brigadeweb\\brigadewebservice_api\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5231772-E333-4AAC-B720-F5D42C222AE5}|BrigadeWebService_API\\BrigadeWebService_API.csproj|solutionrelative:brigadewebservice_api\\controllers\\reportscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09D51C8C-DEE2-4150-B700-816E2CCE31FF}|BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj|c:\\users\\user\\source\\repos\\brigadeweb\\brigadewebservice_bll\\services\\realizations\\reportsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09D51C8C-DEE2-4150-B700-816E2CCE31FF}|BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj|solutionrelative:brigadewebservice_bll\\services\\realizations\\reportsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09D51C8C-DEE2-4150-B700-816E2CCE31FF}|BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj|c:\\users\\user\\source\\repos\\brigadeweb\\brigadewebservice_bll\\services\\interfaces\\ireportsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09D51C8C-DEE2-4150-B700-816E2CCE31FF}|BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj|solutionrelative:brigadewebservice_bll\\services\\interfaces\\ireportsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5231772-E333-4AAC-B720-F5D42C222AE5}|BrigadeWebService_API\\BrigadeWebService_API.csproj|c:\\users\\user\\source\\repos\\brigadeweb\\brigadewebservice_api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F5231772-E333-4AAC-B720-F5D42C222AE5}|BrigadeWebService_API\\BrigadeWebService_API.csproj|solutionrelative:brigadewebservice_api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09D51C8C-DEE2-4150-B700-816E2CCE31FF}|BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj|c:\\users\\user\\source\\repos\\brigadeweb\\brigadewebservice_bll\\options\\uploadoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09D51C8C-DEE2-4150-B700-816E2CCE31FF}|BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj|solutionrelative:brigadewebservice_bll\\options\\uploadoptions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{067BA8C2-DFB1-4741-992B-00499F3DE103}|BrigadeWebService_DAL\\BrigadeWebService_DAL.csproj|c:\\users\\user\\source\\repos\\brigadeweb\\brigadewebservice_dal\\repositories\\realizations\\reports\\reportrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{067BA8C2-DFB1-4741-992B-00499F3DE103}|BrigadeWebService_DAL\\BrigadeWebService_DAL.csproj|solutionrelative:brigadewebservice_dal\\repositories\\realizations\\reports\\reportrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{067BA8C2-DFB1-4741-992B-00499F3DE103}|BrigadeWebService_DAL\\BrigadeWebService_DAL.csproj|c:\\users\\user\\source\\repos\\brigadeweb\\brigadewebservice_dal\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{067BA8C2-DFB1-4741-992B-00499F3DE103}|BrigadeWebService_DAL\\BrigadeWebService_DAL.csproj|solutionrelative:brigadewebservice_dal\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{067BA8C2-DFB1-4741-992B-00499F3DE103}|BrigadeWebService_DAL\\BrigadeWebService_DAL.csproj|c:\\users\\user\\source\\repos\\brigadeweb\\brigadewebservice_dal\\entities\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{067BA8C2-DFB1-4741-992B-00499F3DE103}|BrigadeWebService_DAL\\BrigadeWebService_DAL.csproj|solutionrelative:brigadewebservice_dal\\entities\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09D51C8C-DEE2-4150-B700-816E2CCE31FF}|BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj|c:\\users\\user\\source\\repos\\brigadeweb\\brigadewebservice_bll\\enums\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09D51C8C-DEE2-4150-B700-816E2CCE31FF}|BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj|solutionrelative:brigadewebservice_bll\\enums\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F5231772-E333-4AAC-B720-F5D42C222AE5}|BrigadeWebService_API\\BrigadeWebService_API.csproj|c:\\users\\user\\source\\repos\\brigadeweb\\brigadewebservice_api\\controllers\\vacancycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5231772-E333-4AAC-B720-F5D42C222AE5}|BrigadeWebService_API\\BrigadeWebService_API.csproj|solutionrelative:brigadewebservice_api\\controllers\\vacancycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09D51C8C-DEE2-4150-B700-816E2CCE31FF}|BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj|c:\\users\\user\\source\\repos\\brigadeweb\\brigadewebservice_bll\\services\\realizations\\vacanciesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{09D51C8C-DEE2-4150-B700-816E2CCE31FF}|BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj|solutionrelative:brigadewebservice_bll\\services\\realizations\\vacanciesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{09D51C8C-DEE2-4150-B700-816E2CCE31FF}|BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj|c:\\users\\user\\source\\repos\\brigadeweb\\brigadewebservice_bll\\brigadewebservice_bll.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{09D51C8C-DEE2-4150-B700-816E2CCE31FF}|BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj|solutionrelative:brigadewebservice_bll\\brigadewebservice_bll.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{067BA8C2-DFB1-4741-992B-00499F3DE103}|BrigadeWebService_DAL\\BrigadeWebService_DAL.csproj|c:\\users\\user\\source\\repos\\brigadeweb\\brigadewebservice_dal\\migrations\\20250822152648_addreportstable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{067BA8C2-DFB1-4741-992B-00499F3DE103}|BrigadeWebService_DAL\\BrigadeWebService_DAL.csproj|solutionrelative:brigadewebservice_dal\\migrations\\20250822152648_addreportstable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ReportProfile.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_BLL\\Mapper\\Reports\\ReportProfile.cs",
+              "RelativeDocumentMoniker": "BrigadeWebService_BLL\\Mapper\\Reports\\ReportProfile.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_BLL\\Mapper\\Reports\\ReportProfile.cs",
+              "RelativeToolTip": "BrigadeWebService_BLL\\Mapper\\Reports\\ReportProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-22T15:28:51.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "20250822152648_addreportstable.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_DAL\\Migrations\\20250822152648_addreportstable.cs",
+              "RelativeDocumentMoniker": "BrigadeWebService_DAL\\Migrations\\20250822152648_addreportstable.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_DAL\\Migrations\\20250822152648_addreportstable.cs",
+              "RelativeToolTip": "BrigadeWebService_DAL\\Migrations\\20250822152648_addreportstable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-22T15:26:48.851Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_API\\appsettings.json",
+              "RelativeDocumentMoniker": "BrigadeWebService_API\\appsettings.json",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_API\\appsettings.json",
+              "RelativeToolTip": "BrigadeWebService_API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-22T15:14:40.586Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UploadOptions.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_BLL\\Options\\UploadOptions.cs",
+              "RelativeDocumentMoniker": "BrigadeWebService_BLL\\Options\\UploadOptions.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_BLL\\Options\\UploadOptions.cs",
+              "RelativeToolTip": "BrigadeWebService_BLL\\Options\\UploadOptions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-22T15:14:19.485Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_DAL\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "BrigadeWebService_DAL\\Entities\\User.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_DAL\\Entities\\User.cs",
+              "RelativeToolTip": "BrigadeWebService_DAL\\Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-22T14:59:08.636Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ReportsController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_API\\Controllers\\ReportsController.cs",
+              "RelativeDocumentMoniker": "BrigadeWebService_API\\Controllers\\ReportsController.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_API\\Controllers\\ReportsController.cs",
+              "RelativeToolTip": "BrigadeWebService_API\\Controllers\\ReportsController.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAqwB0AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-22T14:55:41.475Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Report.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_DAL\\Entities\\Report.cs",
+              "RelativeDocumentMoniker": "BrigadeWebService_DAL\\Entities\\Report.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_DAL\\Entities\\Report.cs",
+              "RelativeToolTip": "BrigadeWebService_DAL\\Entities\\Report.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-22T14:55:19.264Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ReportRepository.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_DAL\\Repositories\\Realizations\\Reports\\ReportRepository.cs",
+              "RelativeDocumentMoniker": "BrigadeWebService_DAL\\Repositories\\Realizations\\Reports\\ReportRepository.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_DAL\\Repositories\\Realizations\\Reports\\ReportRepository.cs",
+              "RelativeToolTip": "BrigadeWebService_DAL\\Repositories\\Realizations\\Reports\\ReportRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-22T14:55:04.006Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ReportsService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_BLL\\Services\\Realizations\\ReportsService.cs",
+              "RelativeDocumentMoniker": "BrigadeWebService_BLL\\Services\\Realizations\\ReportsService.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_BLL\\Services\\Realizations\\ReportsService.cs",
+              "RelativeToolTip": "BrigadeWebService_BLL\\Services\\Realizations\\ReportsService.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAIAwwBoAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-22T14:48:37.444Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IReportsService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_BLL\\Services\\Interfaces\\IReportsService.cs",
+              "RelativeDocumentMoniker": "BrigadeWebService_BLL\\Services\\Interfaces\\IReportsService.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_BLL\\Services\\Interfaces\\IReportsService.cs",
+              "RelativeToolTip": "BrigadeWebService_BLL\\Services\\Interfaces\\IReportsService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-22T14:48:11.305Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_API\\Program.cs",
+              "RelativeDocumentMoniker": "BrigadeWebService_API\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_API\\Program.cs",
+              "RelativeToolTip": "BrigadeWebService_API\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T18:02:03.551Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "VacanciesService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_BLL\\Services\\Realizations\\VacanciesService.cs",
+              "RelativeDocumentMoniker": "BrigadeWebService_BLL\\Services\\Realizations\\VacanciesService.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_BLL\\Services\\Realizations\\VacanciesService.cs",
+              "RelativeToolTip": "BrigadeWebService_BLL\\Services\\Realizations\\VacanciesService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T17:23:11.5Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "VacancyController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_API\\Controllers\\VacancyController.cs",
+              "RelativeDocumentMoniker": "BrigadeWebService_API\\Controllers\\VacancyController.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_API\\Controllers\\VacancyController.cs",
+              "RelativeToolTip": "BrigadeWebService_API\\Controllers\\VacancyController.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAewDAAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-21T17:21:20.312Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "BrigadeWebService_BLL.csproj",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj",
+              "RelativeDocumentMoniker": "BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj",
+              "RelativeToolTip": "BrigadeWebService_BLL\\BrigadeWebService_BLL.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-19T18:26:53.997Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Roles.cs",
+              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_BLL\\Enums\\Roles.cs",
+              "RelativeDocumentMoniker": "BrigadeWebService_BLL\\Enums\\Roles.cs",
+              "ToolTip": "C:\\Users\\User\\source\\repos\\BrigadeWeb\\BrigadeWebService_BLL\\Enums\\Roles.cs",
+              "RelativeToolTip": "BrigadeWebService_BLL\\Enums\\Roles.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-19T18:26:13.402Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

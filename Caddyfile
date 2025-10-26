@@ -1,0 +1,14 @@
+www.{$DOMAIN} {
+  redir https://{$DOMAIN}{uri}
+}
+
+{$DOMAIN} {
+  encode zstd gzip
+
+  @api path /api/*
+  reverse_proxy @api api:8080
+
+  handle {
+    reverse_proxy web:80
+  }
+}
