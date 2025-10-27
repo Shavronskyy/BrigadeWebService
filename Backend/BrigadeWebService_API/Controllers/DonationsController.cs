@@ -43,7 +43,7 @@ namespace BrigadeWebService_API.Controllers
         [HttpPatch("{id}/completeDonation")]
         public async Task<IActionResult> CompleteDonation([FromRoute] int id)
         {
-            return await _donationService.ChangeDonationStateAsync(id) ? Ok() : BadRequest("Failed to complete donation");
+            return await _donationService.ChangeDonationStateAsync(id) ? Ok() : BadRequest("Failed to complete/activate donation");
         }
 
         [HttpGet("getReportsByDonationId/{id}")]

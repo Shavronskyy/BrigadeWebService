@@ -28,23 +28,44 @@ class ReportsApiService {
     return `${API_CONFIG.BASE_URL}/${url}`;
   }
 
+  private async extractErrorMessage(response: Response): Promise<string> {
+    try {
+      const responseText = await response.text();
+      if (!responseText || responseText.trim() === "") {
+        return `HTTP error! status: ${response.status}`;
+      }
+
+      // Try to parse as JSON
+      try {
+        const errorData = JSON.parse(responseText);
+        return (
+          errorData.message ||
+          errorData.title ||
+          errorData.detail ||
+          errorData.error ||
+          errorData.exception ||
+          errorData.Message ||
+          errorData.Title ||
+          errorData.Detail ||
+          errorData.Error ||
+          errorData.Exception ||
+          responseText ||
+          `HTTP error! status: ${response.status}`
+        );
+      } catch {
+        // If JSON parsing fails, return raw text
+        return responseText || `HTTP error! status: ${response.status}`;
+      }
+    } catch {
+      return `HTTP error! status: ${response.status}`;
+    }
+  }
+
   async getAllReports(): Promise<Report[]> {
     try {
       const response = await fetch(`${this.baseUrl}/getAll`);
       if (!response.ok) {
-        let errorData: any = {};
-        try {
-          const responseText = await response.text();
-          if (responseText && responseText.trim() !== "") {
-            errorData = JSON.parse(responseText);
-          }
-        } catch {
-          // If JSON parsing fails, use empty object
-        }
-        const errorMessage =
-          errorData.message ||
-          errorData.title ||
-          `HTTP error! status: ${response.status}`;
+        const errorMessage = await this.extractErrorMessage(response);
         throw new Error(errorMessage);
       }
 
@@ -78,19 +99,7 @@ class ReportsApiService {
       });
 
       if (!response.ok) {
-        let errorData: any = {};
-        try {
-          const responseText = await response.text();
-          if (responseText && responseText.trim() !== "") {
-            errorData = JSON.parse(responseText);
-          }
-        } catch {
-          // If JSON parsing fails, use empty object
-        }
-        const errorMessage =
-          errorData.message ||
-          errorData.title ||
-          `HTTP error! status: ${response.status}`;
+        const errorMessage = await this.extractErrorMessage(response);
         throw new Error(errorMessage);
       }
 
@@ -165,19 +174,7 @@ class ReportsApiService {
       });
 
       if (!response.ok) {
-        let errorData: any = {};
-        try {
-          const responseText = await response.text();
-          if (responseText && responseText.trim() !== "") {
-            errorData = JSON.parse(responseText);
-          }
-        } catch {
-          // If JSON parsing fails, use empty object
-        }
-        const errorMessage =
-          errorData.message ||
-          errorData.title ||
-          `HTTP error! status: ${response.status}`;
+        const errorMessage = await this.extractErrorMessage(response);
         throw new Error(errorMessage);
       }
 
@@ -227,19 +224,7 @@ class ReportsApiService {
         method: "DELETE",
       });
       if (!response.ok) {
-        let errorData: any = {};
-        try {
-          const responseText = await response.text();
-          if (responseText && responseText.trim() !== "") {
-            errorData = JSON.parse(responseText);
-          }
-        } catch {
-          // If JSON parsing fails, use empty object
-        }
-        const errorMessage =
-          errorData.message ||
-          errorData.title ||
-          `HTTP error! status: ${response.status}`;
+        const errorMessage = await this.extractErrorMessage(response);
         throw new Error(errorMessage);
       }
     } catch (error) {

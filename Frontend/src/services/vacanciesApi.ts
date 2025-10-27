@@ -22,15 +22,44 @@ class VacanciesApiService {
     return getApiUrl("VACANCIES");
   }
 
+  private async extractErrorMessage(response: Response): Promise<string> {
+    try {
+      const responseText = await response.text();
+      if (!responseText || responseText.trim() === "") {
+        return `HTTP error! status: ${response.status}`;
+      }
+
+      // Try to parse as JSON
+      try {
+        const errorData = JSON.parse(responseText);
+        return (
+          errorData.message ||
+          errorData.title ||
+          errorData.detail ||
+          errorData.error ||
+          errorData.exception ||
+          errorData.Message ||
+          errorData.Title ||
+          errorData.Detail ||
+          errorData.Error ||
+          errorData.Exception ||
+          responseText ||
+          `HTTP error! status: ${response.status}`
+        );
+      } catch {
+        // If JSON parsing fails, return raw text
+        return responseText || `HTTP error! status: ${response.status}`;
+      }
+    } catch {
+      return `HTTP error! status: ${response.status}`;
+    }
+  }
+
   async getAllVacancies(): Promise<Vacancy[]> {
     try {
       const response = await fetch(`${this.baseUrl}/getAll`);
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        const errorMessage =
-          errorData.message ||
-          errorData.title ||
-          `HTTP error! status: ${response.status}`;
+        const errorMessage = await this.extractErrorMessage(response);
         throw new Error(errorMessage);
       }
 
@@ -57,11 +86,7 @@ class VacanciesApiService {
         body: JSON.stringify(vacancy),
       });
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        const errorMessage =
-          errorData.message ||
-          errorData.title ||
-          `HTTP error! status: ${response.status}`;
+        const errorMessage = await this.extractErrorMessage(response);
         throw new Error(errorMessage);
       }
       return await response.json();
@@ -81,11 +106,7 @@ class VacanciesApiService {
         body: JSON.stringify(vacancy),
       });
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        const errorMessage =
-          errorData.message ||
-          errorData.title ||
-          `HTTP error! status: ${response.status}`;
+        const errorMessage = await this.extractErrorMessage(response);
         throw new Error(errorMessage);
       }
       return await response.json();
@@ -101,11 +122,7 @@ class VacanciesApiService {
         method: "DELETE",
       });
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        const errorMessage =
-          errorData.message ||
-          errorData.title ||
-          `HTTP error! status: ${response.status}`;
+        const errorMessage = await this.extractErrorMessage(response);
         throw new Error(errorMessage);
       }
     } catch (error) {
