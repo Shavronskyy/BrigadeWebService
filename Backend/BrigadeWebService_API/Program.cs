@@ -19,6 +19,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json.Serialization;
+using BrigadeWebService_DAL.Repositories.Interfaces.Posts;
+using BrigadeWebService_DAL.Repositories.Realizations.Posts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,7 +65,7 @@ builder.Services
         };
     });
 
-// AWS S3 (з env або appsettings)
+// AWS S3 (пїЅ env пїЅпїЅпїЅ appsettings)
 builder.Services.AddSingleton<IAmazonS3>(_ =>
 {
     var aws = builder.Configuration.GetSection("AWS");
@@ -76,7 +78,7 @@ builder.Services.AddSingleton<IAmazonS3>(_ =>
     if (!string.IsNullOrWhiteSpace(accessKey) && !string.IsNullOrWhiteSpace(secretKey))
         return new AmazonS3Client(accessKey.Trim(), secretKey.Trim(), region);
 
-    // Без ключів — використовуємо default credentials chain (ENV, профілі, IAM роль тощо)
+    // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ default credentials chain (ENV, пїЅпїЅпїЅпїЅпїЅпїЅ, IAM пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ)
     return new AmazonS3Client(region);
 });
 
@@ -89,10 +91,12 @@ builder.Services.AddScoped<IVacancyRepository, VacancyRepository>();
 builder.Services.AddScoped<IReportRepository, ReportRepository>();
 builder.Services.AddScoped<IDonationsRepository, DonationsRepository>();
 builder.Services.AddScoped<IImagesRepository, ImagesRepository>();
+builder.Services.AddScoped<IPostsRepository, PostsRepository>();
+builder.Services.AddScoped<IPostsService, PostsService>();
 builder.Services.AddScoped<IImageService, ImageService>();
 builder.Services.AddScoped<S3ImageService>();
 
-// CORS (дев режим — максимально вільно)
+// CORS (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
@@ -111,7 +115,7 @@ builder.Services.AddSwaggerGen();
 // Upload options
 builder.Services.Configure<UploadOptions>(builder.Configuration.GetSection("Uploads"));
 
-// System.Text.Json налаштування (як у тебе було)
+// System.Text.Json пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ)
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
     options.SerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
@@ -125,14 +129,14 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseStaticFiles();
 
-// Міграції БД на старті
+// МіпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
 }
 
-// Swagger тільки у Dev
+// Swagger пїЅпїЅпїЅпїЅпїЅ пїЅ Dev
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -141,7 +145,7 @@ if (app.Environment.IsDevelopment())
 
 app.MapControllers();
 
-// Гарантуємо існування wwwroot
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ wwwroot
 var webRoot = app.Environment.WebRootPath ?? Path.Combine(app.Environment.ContentRootPath, "wwwroot");
 Directory.CreateDirectory(webRoot);
 
