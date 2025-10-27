@@ -7,11 +7,12 @@ namespace BrigadeWebService_DAL.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<User> Users => Set<User>();
-        public DbSet<Vacancy> Vacancies => Set<Vacancy>();
-        public DbSet<Report> Reports => Set<Report>();
-        public DbSet<Donation> Donations => Set<Donation>();
+        public DbSet<User> Users { get; set; }
+        public DbSet<Vacancy> Vacancies { get; set; }
+        public DbSet<Report> Reports { get; set; }
+        public DbSet<Donation> Donations { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
