@@ -3,6 +3,7 @@
     public enum Content
     {
         Donations,
-        Reports
+        Reports,
+        Posts
     }
 }

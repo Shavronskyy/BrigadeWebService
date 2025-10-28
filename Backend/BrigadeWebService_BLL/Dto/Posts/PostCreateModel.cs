@@ -10,6 +10,6 @@ namespace BrigadeWebService_BLL.Dto.Posts
         public string ShortText { get; set; }
         public string Content { get; set; }
         public DateTime CreatedAt { get; set; }
-        public ICollection<IFormFile> Images { get; set; } = new List<IFormFile>();
+        public List<IFormFile> Photos { get; set; } = new();
     }
 }
