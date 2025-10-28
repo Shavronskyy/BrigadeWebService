@@ -16,6 +16,7 @@ export const API_CONFIG = {
     REPORTS: "/api/Reports",
     VACANCIES: "/api/Vacancy",
     CONTACT: "/api/Contact",
+    POSTS: "/api/Posts",
   },
   CONTACT_EMAIL: "arsenalsadn@ukr.net",
 };

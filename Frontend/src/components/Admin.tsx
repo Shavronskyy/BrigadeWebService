@@ -3,8 +3,9 @@ import { useAuth } from "../contexts/AuthContext";
 import "./Admin.css";
 import AdminVacancies from "./AdminVacancies";
 import AdminDonations from "./AdminDonations";
+import AdminPosts from "./AdminPosts";
 
-type AdminSection = "vacancies" | "donations";
+type AdminSection = "vacancies" | "donations" | "posts";
 
 const Admin: React.FC = () => {
   // const { user, logout } = useAuth(); // Currently unused
@@ -47,11 +48,19 @@ const Admin: React.FC = () => {
               <span className="nav-icon">💰</span>
               Збори
             </button>
+            <button
+              className={`nav-btn ${activeSection === "posts" ? "active" : ""}`}
+              onClick={() => setActiveSection("posts")}
+            >
+              <span className="nav-icon">📝</span>
+              Пости
+            </button>
           </div>
 
           <div className="admin-section">
             {activeSection === "vacancies" && <AdminVacancies />}
             {activeSection === "donations" && <AdminDonations />}
+            {activeSection === "posts" && <AdminPosts />}
           </div>
         </div>
       </div>
