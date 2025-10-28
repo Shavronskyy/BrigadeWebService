@@ -87,16 +87,16 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddTransient<IVacanciesService, VacanciesService>();
 builder.Services.AddTransient<IReportsService, ReportsService>();
 builder.Services.AddTransient<IDonationService, DonationService>();
+builder.Services.AddTransient<IPostsService, PostsService>();
+builder.Services.AddScoped<IImageService, ImageService>();
+builder.Services.AddScoped<S3ImageService>();
+// Repositories
 builder.Services.AddScoped<IVacancyRepository, VacancyRepository>();
 builder.Services.AddScoped<IReportRepository, ReportRepository>();
 builder.Services.AddScoped<IDonationsRepository, DonationsRepository>();
 builder.Services.AddScoped<IImagesRepository, ImagesRepository>();
 builder.Services.AddScoped<IPostsRepository, PostsRepository>();
-builder.Services.AddScoped<IPostsService, PostsService>();
-builder.Services.AddScoped<IImageService, ImageService>();
-builder.Services.AddScoped<S3ImageService>();
 
-// CORS (��� ����� � ����������� �����)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", policy =>
