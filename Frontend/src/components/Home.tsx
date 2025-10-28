@@ -98,7 +98,12 @@ const Home: React.FC = () => {
 
       {/* Blog Section */}
       {posts.length > 0 && (
-        <div className="blog-section">
+        <div
+          className="blog-section"
+          style={{
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${mainBackImage})`,
+          }}
+        >
           <div className="container">
             <h2 className="section-title">Блог</h2>
             <div className="posts-grid">
