@@ -13,7 +13,9 @@
         public ImageStatus Status { get; set; } = ImageStatus.Pending;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public int? ReportId { get; set; }
+        public int? PostId { get; set; }
         public Report? Report { get; set; }
         public Donation? Donation { get; set; }
+        public Post? Post { get; set; }
     }
 }

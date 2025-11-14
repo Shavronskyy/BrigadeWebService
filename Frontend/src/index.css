@@ -19,21 +19,21 @@
   --text-muted: #b0b0b0;
 
   /* Border Colors */
-  --border-primary: #556b2f;
+  --border-primary: #666666;
   --border-secondary: #8b4513;
   --border-muted: #333333;
 
   /* Shadow Colors */
-  --shadow-green: rgba(85, 107, 47, 0.2);
+  --shadow-green: rgba(102, 102, 102, 0.2);
   --shadow-brown: rgba(139, 69, 19, 0.2);
   --shadow-white: rgba(255, 255, 255, 0.1);
 
   /* Gradient Backgrounds */
   --card-bg: linear-gradient(145deg, #2a2a2a 0%, #3a3a3a 100%);
-  --header-gradient: linear-gradient(135deg, #556b2f 0%, #8b4513 100%);
+  --header-gradient: linear-gradient(135deg, #666666 0%, #8b4513 100%);
 
   /* Hover Effects */
-  --hover-shadow: rgba(85, 107, 47, 0.4);
+  --hover-shadow: rgba(102, 102, 102, 0.4);
   --hover-border: #8b4513;
 }
 
