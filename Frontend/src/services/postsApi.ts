@@ -101,7 +101,13 @@ class PostsCrudService {
       }
 
       const posts: any[] = JSON.parse(responseText);
-      return posts.map((post: any) => this.transformPost(post));
+      return posts
+        .map((post: any) => this.transformPost(post))
+        .sort((a: Post, b: Post) => {
+          const aTime = new Date(a.createdAt ?? 0).getTime();
+          const bTime = new Date(b.createdAt ?? 0).getTime();
+          return bTime - aTime;
+        });
     } catch (error) {
       console.error("Error fetching posts:", error);
       throw error;
