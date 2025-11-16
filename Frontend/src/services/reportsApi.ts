@@ -78,10 +78,19 @@ class ReportsApiService {
       const reports: any[] = JSON.parse(responseText);
 
       // Format image URLs for all reports
-      return reports.map((report: any) => ({
-        ...report,
-        img: this.formatImageUrl(report.img),
-      }));
+      return (
+        reports
+          .map((report: any) => ({
+            ...report,
+            img: this.formatImageUrl(report.img),
+          }))
+          // Ensure newest first by createdAt
+          .sort((a: any, b: any) => {
+            const aTime = new Date(a.createdAt ?? 0).getTime();
+            const bTime = new Date(b.createdAt ?? 0).getTime();
+            return bTime - aTime;
+          })
+      );
     } catch (error) {
       console.error("Error fetching reports:", error);
       throw error;

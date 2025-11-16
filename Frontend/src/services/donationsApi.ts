@@ -190,16 +190,30 @@ class DonationsApiService {
       }
 
       // Transform backend data to match frontend interface
-      return donations.map((donation: any) => {
-        const transformedDonation = this.transformDonation(donation);
-        // Also transform reports if they exist
-        if (donation.reports && Array.isArray(donation.reports)) {
-          transformedDonation.reports = donation.reports.map((report: any) =>
-            this.transformReport(report)
-          );
-        }
-        return transformedDonation;
-      });
+      return (
+        donations
+          .map((donation: any) => {
+            const transformedDonation = this.transformDonation(donation);
+            // Also transform reports if they exist
+            if (donation.reports && Array.isArray(donation.reports)) {
+              transformedDonation.reports = donation.reports
+                .map((report: any) => this.transformReport(report))
+                // Newest reports first
+                .sort((a: Report, b: Report) => {
+                  const aTime = new Date(a.createdAt ?? 0).getTime();
+                  const bTime = new Date(b.createdAt ?? 0).getTime();
+                  return bTime - aTime;
+                });
+            }
+            return transformedDonation;
+          })
+          // Newest donations first by creationDate
+          .sort((a: Donation, b: Donation) => {
+            const aTime = new Date(a.creationDate ?? 0).getTime();
+            const bTime = new Date(b.creationDate ?? 0).getTime();
+            return bTime - aTime;
+          })
+      );
     } catch (error) {
       console.error("Error fetching donations:", error);
       throw error;
@@ -442,8 +456,14 @@ class DonationsApiService {
       const reports: any[] = JSON.parse(responseText);
       console.log("Fetched reports DTOs for donation:", reports);
 
-      // Transform DTO reports to frontend format
-      return reports.map((reportDto: any) => this.transformReport(reportDto));
+      // Transform DTO reports to frontend format and sort newest first
+      return reports
+        .map((reportDto: any) => this.transformReport(reportDto))
+        .sort((a: Report, b: Report) => {
+          const aTime = new Date(a.createdAt ?? 0).getTime();
+          const bTime = new Date(b.createdAt ?? 0).getTime();
+          return bTime - aTime;
+        });
     } catch (error) {
       console.error("Error fetching reports by donation ID:", error);
       throw error;
