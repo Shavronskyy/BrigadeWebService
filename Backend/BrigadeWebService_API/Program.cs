@@ -24,7 +24,6 @@ using BrigadeWebService_DAL.Repositories.Realizations.Posts;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// AutoMapper
 builder.Services.AddAutoMapper(typeof(VacancyProfile));
 
 // DbContext
@@ -65,7 +64,7 @@ builder.Services
         };
     });
 
-// AWS S3 (� env ��� appsettings)
+// AWS S3
 builder.Services.AddSingleton<IAmazonS3>(_ =>
 {
     var aws = builder.Configuration.GetSection("AWS");
@@ -107,15 +106,12 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Controllers + Swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Upload options
 builder.Services.Configure<UploadOptions>(builder.Configuration.GetSection("Uploads"));
 
-// System.Text.Json ������������ (�� � ���� ����)
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
     options.SerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
@@ -129,14 +125,12 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseStaticFiles();
 
-// ̳������ �� �� �����
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
 }
 
-// Swagger ����� � Dev
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -145,7 +139,6 @@ if (app.Environment.IsDevelopment())
 
 app.MapControllers();
 
-// ��������� ��������� wwwroot
 var webRoot = app.Environment.WebRootPath ?? Path.Combine(app.Environment.ContentRootPath, "wwwroot");
 Directory.CreateDirectory(webRoot);
 
