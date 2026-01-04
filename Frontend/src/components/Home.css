@@ -449,6 +449,9 @@
     min-height: 100vh;
     align-items: flex-start;
     padding-top: 140px;
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center center;
   }
 
   .hero-content {
@@ -579,6 +582,9 @@
   .hero-section {
     padding: 80px 0 40px 0;
     padding-top: 120px;
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center center;
   }
 
   .hero-content {
@@ -1111,6 +1117,9 @@
 @media (max-width: 768px) {
   .blog-section {
     padding: 60px 0;
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center center;
   }
 
   .section-title {
@@ -1165,6 +1174,9 @@
 @media (max-width: 480px) {
   .blog-section {
     padding: 40px 0;
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center center;
   }
 
   .section-title {
