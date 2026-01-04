@@ -46,7 +46,6 @@ const AdminVacancies: React.FC = () => {
         const data = await vacanciesApiService.getAllVacancies();
         setVacancies(data);
       } catch (error) {
-        console.error("Failed to fetch vacancies:", error);
         setError("Помилка завантаження вакансій");
       } finally {
         setLoading(false);
@@ -136,7 +135,6 @@ const AdminVacancies: React.FC = () => {
 
       closeModal();
     } catch (error) {
-      console.error("Failed to save vacancy:", error);
       showNotification("Помилка збереження вакансії", "error");
     }
   };
@@ -172,7 +170,6 @@ const AdminVacancies: React.FC = () => {
         showNotification("Вакансію успішно видалено", "success");
         closeDeleteConfirm();
       } catch (error) {
-        console.error("Failed to delete vacancy:", error);
         showNotification("Помилка видалення вакансії", "error");
       }
     }

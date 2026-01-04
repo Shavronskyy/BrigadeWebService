@@ -75,7 +75,6 @@ const AdminReports: React.FC = () => {
 
         setReports(transformedReports);
       } catch (error) {
-        console.error("Failed to fetch reports:", error);
         setError("Помилка завантаження звітів");
       } finally {
         setLoading(false);
@@ -135,7 +134,6 @@ const AdminReports: React.FC = () => {
     const { name, value, type } = e.target;
     if (type === "checkbox") {
       const checked = (e.target as HTMLInputElement).checked;
-      console.log("Checkbox changed:", name, "checked:", checked);
       setFormData((prev) => ({ ...prev, [name]: checked }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
@@ -231,7 +229,6 @@ const AdminReports: React.FC = () => {
                 );
                 setReports(transformedReports);
               } catch (error) {
-                console.error("Failed to refresh reports:", error);
               }
             };
             await fetchReports();
@@ -274,7 +271,6 @@ const AdminReports: React.FC = () => {
 
       closeModal();
     } catch (error) {
-      console.error("Failed to save report:", error);
       showNotification("Помилка збереження звіту", "error");
     }
   };
@@ -305,7 +301,6 @@ const AdminReports: React.FC = () => {
         showNotification("Звіт успішно видалено", "success");
         closeDeleteConfirm();
       } catch (error) {
-        console.error("Failed to delete report:", error);
         showNotification("Помилка видалення звіту", "error");
       }
     }
@@ -352,7 +347,6 @@ const AdminReports: React.FC = () => {
         );
       }
     } catch (error) {
-      console.error("Failed to toggle report status:", error);
       showNotification("Помилка зміни статусу звіту", "error");
     }
   };

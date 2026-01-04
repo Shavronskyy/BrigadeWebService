@@ -92,7 +92,6 @@ class ReportsApiService {
           })
       );
     } catch (error) {
-      console.error("Error fetching reports:", error);
       throw error;
     }
   }
@@ -141,10 +140,6 @@ class ReportsApiService {
       try {
         result = JSON.parse(responseText);
       } catch (parseError) {
-        console.warn(
-          "Failed to parse JSON response, creating minimal result:",
-          parseError
-        );
         const minimalResult = {
           id: Date.now(), // Temporary ID
           title: report.title,
@@ -167,7 +162,6 @@ class ReportsApiService {
         img: this.formatImageUrl(result.img),
       };
     } catch (error) {
-      console.error("Error creating report:", error);
       throw error;
     }
   }
@@ -206,10 +200,6 @@ class ReportsApiService {
       try {
         result = JSON.parse(responseText);
       } catch (parseError) {
-        console.warn(
-          "Failed to parse JSON response, using input data:",
-          parseError
-        );
         return {
           ...report,
           img: this.formatImageUrl(report.img),
@@ -222,7 +212,6 @@ class ReportsApiService {
         img: this.formatImageUrl(result.img),
       };
     } catch (error) {
-      console.error("Error updating report:", error);
       throw error;
     }
   }
@@ -237,7 +226,6 @@ class ReportsApiService {
         throw new Error(errorMessage);
       }
     } catch (error) {
-      console.error("Error deleting report:", error);
       throw error;
     }
   }

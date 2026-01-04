@@ -34,9 +34,7 @@ export const sendVacancyApplication = async (
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    console.log("✅ Vacancy application submitted successfully");
   } catch (error) {
-    console.error("Vacancy application error:", error);
     throw new Error("Не вдалося надіслати заявку. Спробуйте ще раз.");
   }
 };

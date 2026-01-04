@@ -78,7 +78,6 @@ class CampaignsApiService {
 
       return JSON.parse(responseText);
     } catch (error) {
-      console.error("Error fetching campaigns:", error);
       throw error;
     }
   }
@@ -93,7 +92,6 @@ class CampaignsApiService {
       }
       return await response.json();
     } catch (error) {
-      console.error("Error fetching campaign:", error);
       throw error;
     }
   }
@@ -113,7 +111,6 @@ class CampaignsApiService {
       }
       return await response.json();
     } catch (error) {
-      console.error("Error creating campaign:", error);
       throw error;
     }
   }
@@ -133,7 +130,6 @@ class CampaignsApiService {
       }
       return await response.json();
     } catch (error) {
-      console.error("Error updating campaign:", error);
       throw error;
     }
   }
@@ -148,7 +144,6 @@ class CampaignsApiService {
         throw new Error(errorMessage);
       }
     } catch (error) {
-      console.error("Error deleting campaign:", error);
       throw error;
     }
   }
@@ -167,7 +162,6 @@ class CampaignsApiService {
       }
       return await response.json();
     } catch (error) {
-      console.error("Error toggling campaign status:", error);
       throw error;
     }
   }

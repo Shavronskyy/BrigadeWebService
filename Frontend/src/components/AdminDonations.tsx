@@ -72,28 +72,20 @@ const AdminDonations: React.FC = () => {
       try {
         setLoading(true);
         setError(null);
-        console.log("AdminDonations: Starting to fetch donations...");
         const data = await donationsApiService.getAllDonations();
-        console.log("AdminDonations: Successfully fetched donations:", data);
 
         // Fetch reports for each donation
         const donationsWithReports = await Promise.all(
           data.map(async (donation) => {
             try {
-              console.log(`Fetching reports for donation ${donation.id}...`);
               const reports = await donationsApiService.getReportsByDonationId(
                 donation.id
               );
-              console.log(`Reports for donation ${donation.id}:`, reports);
               return {
                 ...donation,
                 reports: reports,
               };
             } catch (reportError) {
-              console.error(
-                `Failed to fetch reports for donation ${donation.id}:`,
-                reportError
-              );
               // Return donation without reports if fetching reports fails
               return {
                 ...donation,
@@ -103,13 +95,8 @@ const AdminDonations: React.FC = () => {
           })
         );
 
-        console.log(
-          "AdminDonations: Donations with reports:",
-          donationsWithReports
-        );
         setDonations(donationsWithReports);
       } catch (error) {
-        console.error("AdminDonations: Failed to fetch donations:", error);
         let errorMessage = "Помилка завантаження зборів";
 
         if (error instanceof Error) {
@@ -231,10 +218,6 @@ const AdminDonations: React.FC = () => {
 
   const handleDonationFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
-    console.log(
-      "File selected:",
-      file ? `${file.name} (${file.size} bytes, ${file.type})` : "No file"
-    );
     setSelectedDonationFile(file);
   };
 
@@ -256,9 +239,6 @@ const AdminDonations: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("AdminDonations: Form submission started");
-    console.log("Form data:", formData);
-    console.log("Selected file:", selectedDonationFile);
 
     try {
       // Get current date in Kyiv timezone
@@ -291,15 +271,6 @@ const AdminDonations: React.FC = () => {
         // Create donation with image using the new endpoint
         if (selectedDonationFile) {
           // Use the new endpoint for creating donation with image
-          console.log("Creating donation with image...");
-          console.log(
-            "Selected file:",
-            selectedDonationFile.name,
-            "Size:",
-            selectedDonationFile.size,
-            "Type:",
-            selectedDonationFile.type
-          );
           const fd = new FormData();
           fd.append("Title", formData.title);
           fd.append("Description", formData.description);
@@ -307,27 +278,12 @@ const AdminDonations: React.FC = () => {
           fd.append("DonationLink", formData.donationLink);
           fd.append("Photo", selectedDonationFile, selectedDonationFile.name);
 
-          console.log("Donation FormData contents:");
           const donationFormDataArray = Array.from(fd.entries());
           donationFormDataArray.forEach((pair) => {
-            if (pair[1] instanceof File) {
-              console.log(
-                pair[0] +
-                  ": [FILE] " +
-                  (pair[1] as File).name +
-                  " (" +
-                  (pair[1] as File).size +
-                  " bytes)"
-              );
-            } else {
-              console.log(pair[0] + ": " + pair[1]);
-            }
+            // FormData entries processed
           });
 
           // Test if DonationsController endpoint is accessible
-          console.log(
-            "Testing DonationsController create-with-image endpoint..."
-          );
           try {
             const testResponse = await fetch(
               `${API_CONFIG.BASE_URL}/api/Donations`,
@@ -336,25 +292,15 @@ const AdminDonations: React.FC = () => {
                 headers: { Accept: "application/json" },
               }
             );
-            console.log(
-              "DonationsController test:",
-              testResponse.status,
-              testResponse.statusText
-            );
 
-            if (testResponse.status === 405) {
-              console.log(
-                "DonationsController exists but GET method not allowed - this is expected!"
-              );
-            } else if (testResponse.status === 404) {
-              console.log("DonationsController not found - check registration");
+          if (testResponse.status === 405) {
+            // DonationsController exists but GET method not allowed - this is expected!
+          } else if (testResponse.status === 404) {
             }
           } catch (testError) {
-            console.error("DonationsController test failed:", testError);
           }
 
           const createWithImageUrl = `${API_CONFIG.BASE_URL}/api/Donations/create`;
-          console.log("Sending request to:", createWithImageUrl);
 
           let r;
           try {
@@ -362,9 +308,7 @@ const AdminDonations: React.FC = () => {
               method: "POST",
               body: fd,
             });
-            console.log("Response status:", r.status);
           } catch (fetchError) {
-            console.error("Donation creation fetch error:", fetchError);
             const errorMessage =
               fetchError instanceof Error
                 ? fetchError.message
@@ -374,7 +318,6 @@ const AdminDonations: React.FC = () => {
           }
 
           if (r.ok) {
-            console.log("Donation creation successful - status:", r.status);
 
             // Since backend might return Created() without body, refresh to get the new donation
             showNotification("Збір з фото успішно додано", "success");
@@ -385,7 +328,6 @@ const AdminDonations: React.FC = () => {
                 const data = await donationsApiService.getAllDonations();
                 setDonations(data);
               } catch (error) {
-                console.error("Failed to refresh donations:", error);
               }
             };
             await fetchDonations();
@@ -396,9 +338,7 @@ const AdminDonations: React.FC = () => {
           }
         } else {
           // Create donation without image using the old method
-          console.log("Creating donation without image...");
           const result = await donationsApiService.createDonation(donationData);
-          console.log("Donation created:", result);
           setDonations((prev) => [...prev, result]);
           showNotification("Збір успішно додано", "success");
         }
@@ -406,7 +346,6 @@ const AdminDonations: React.FC = () => {
 
       closeModal();
     } catch (error) {
-      console.error("Failed to save donation:", error);
       const errorMessage =
         error instanceof Error ? error.message : "Помилка збереження збору";
       showNotification(errorMessage, "error");
@@ -430,12 +369,10 @@ const AdminDonations: React.FC = () => {
 
       if (editingReport) {
         // Update existing report
-        console.log("Updating report:", editingReport.id);
         // TODO: Implement update report API call when backend endpoint is available
         showNotification("Оновлення звітів поки не реалізовано", "error");
       } else {
         // Create new report with images using the new endpoint
-        console.log("Creating report for donation ID:", reportDonation.id);
 
         // Create FormData for the new endpoint
         const formData = new FormData();
@@ -449,19 +386,15 @@ const AdminDonations: React.FC = () => {
           for (const file of Array.from(selectedReportFiles)) {
             formData.append("Photos", file, file.name);
           }
-          console.log(`Added ${selectedReportFiles.length} files to FormData`);
         } else {
-          console.log("No files selected for report");
         }
 
-        console.log("FormData contents:");
         const formDataArray = Array.from(formData.entries());
         formDataArray.forEach((pair) => {
-          console.log(pair[0] + ": " + pair[1]);
+          // FormData entries processed
         });
 
         // Test if ReportsController basic endpoint works
-        console.log("Testing ReportsController basic functionality...");
         try {
           const testResponse = await fetch(
             `${API_CONFIG.BASE_URL}/api/Reports`,
@@ -470,25 +403,15 @@ const AdminDonations: React.FC = () => {
               headers: { Accept: "application/json" },
             }
           );
-          console.log(
-            "ReportsController test:",
-            testResponse.status,
-            testResponse.statusText
-          );
 
           if (testResponse.status === 405) {
-            console.log(
-              "ReportsController exists but GET method not allowed - this is expected!"
-            );
+            // ReportsController exists but GET method not allowed - this is expected!
           } else if (testResponse.status === 404) {
-            console.log("ReportsController not found - check registration");
           }
         } catch (testError) {
-          console.error("ReportsController test failed:", testError);
         }
 
         // Use ReportsController create endpoint
-        console.log("Creating report using ReportsController create endpoint");
 
         let response;
         try {
@@ -497,9 +420,7 @@ const AdminDonations: React.FC = () => {
             body: formData,
           });
 
-          console.log("Response received:", response.status);
         } catch (fetchError) {
-          console.error("Fetch error details:", fetchError);
           const errorMessage =
             fetchError instanceof Error
               ? fetchError.message
@@ -508,10 +429,8 @@ const AdminDonations: React.FC = () => {
           return;
         }
 
-        console.log("Response status:", response.status);
 
         if (response.ok) {
-          console.log("Report creation successful - status:", response.status);
 
           // Since backend only returns Created() without body, we need to refresh to get the new report
           showNotification("Звіт з фото успішно створено", "success");
@@ -522,14 +441,11 @@ const AdminDonations: React.FC = () => {
               const data = await donationsApiService.getAllDonations();
               setDonations(data);
             } catch (error) {
-              console.error("Failed to refresh donations:", error);
             }
           };
           await fetchDonations();
         } else {
-          console.error("Report creation failed with status:", response.status);
           const errorText = await response.text();
-          console.error("Error response:", errorText);
           showNotification(
             `Помилка створення звіту (${response.status}): ${errorText}`,
             "error"
@@ -540,7 +456,6 @@ const AdminDonations: React.FC = () => {
 
       closeReportModal();
     } catch (error) {
-      console.error("Failed to save report:", error);
       const errorMessage =
         error instanceof Error ? error.message : "Помилка збереження звіту";
       showNotification(errorMessage, "error");
@@ -562,7 +477,6 @@ const AdminDonations: React.FC = () => {
       const data = await donationsApiService.getAllDonations();
       setDonations(data);
     } catch (error) {
-      console.error("Failed to delete individual report:", error);
       const errorMessage =
         error instanceof Error ? error.message : "Помилка видалення звіту";
       showNotification(errorMessage, "error");
@@ -603,7 +517,6 @@ const AdminDonations: React.FC = () => {
         showNotification("Збір успішно видалено", "success");
         closeDeleteConfirm();
       } catch (error) {
-        console.error("Failed to delete donation:", error);
         const errorMessage =
           error instanceof Error ? error.message : "Помилка видалення збору";
         showNotification(errorMessage, "error");
@@ -632,7 +545,6 @@ const AdminDonations: React.FC = () => {
         "success"
       );
     } catch (error) {
-      console.error("Failed to toggle donation status:", error);
       const errorMessage =
         error instanceof Error ? error.message : "Помилка зміни статусу збору";
       showNotification(errorMessage, "error");
@@ -671,11 +583,6 @@ const AdminDonations: React.FC = () => {
             <div className="no-donations">Ви ще не додали жодного збору</div>
           ) : (
             donations.map((donation) => {
-              console.log(`Rendering donation ${donation.id}:`, donation);
-              console.log(
-                `Reports for donation ${donation.id}:`,
-                donation.reports
-              );
               return (
                 <div key={donation.id} className="donation-item">
                   {donation.img ? (
@@ -688,7 +595,6 @@ const AdminDonations: React.FC = () => {
                       alt={donation.title}
                       className="donation-image"
                       onError={(e) => {
-                        console.log("Image load error for:", donation.img);
                         e.currentTarget.style.display = "none";
                       }}
                     />
@@ -1052,14 +958,6 @@ const AdminDonations: React.FC = () => {
                                         margin: "2px",
                                       }}
                                       onError={(e) => {
-                                        console.log(
-                                          "Report S3 image load error for report ID:",
-                                          report.id,
-                                          "image ID:",
-                                          imageDto.id,
-                                          "URL:",
-                                          imageDto.url
-                                        );
                                         e.currentTarget.style.display = "none";
                                       }}
                                     />

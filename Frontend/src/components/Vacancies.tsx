@@ -18,7 +18,6 @@ const Vacancies: React.FC = () => {
         const data = await vacanciesApiService.getAllVacancies();
         setVacancies(data);
       } catch (error) {
-        console.error("Failed to fetch vacancies:", error);
       } finally {
         setLoading(false);
       }

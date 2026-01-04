@@ -21,12 +21,6 @@ export const API_CONFIG = {
   CONTACT_EMAIL: "arsenalsadn@ukr.net",
 };
 
-// Log configuration for debugging
-if (IS_DEBUG) {
-  console.log("[API Config] Environment:", ENVIRONMENT);
-  console.log("[API Config] Base URL:", BASE_URL);
-  console.log("[API Config] Timeout:", API_TIMEOUT);
-}
 
 export const getApiUrl = (endpoint: keyof typeof API_CONFIG.ENDPOINTS) => {
   const base = API_CONFIG.BASE_URL.replace(/\/$/, ""); // прибрати кінцевий слеш

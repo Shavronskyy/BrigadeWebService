@@ -14,11 +14,6 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   const { isAuthenticated, isAdmin, loading, user } = useAuth();
   
   // Debug logging
-  console.log("ProtectedRoute: requireAdmin:", requireAdmin);
-  console.log("ProtectedRoute: isAuthenticated:", isAuthenticated);
-  console.log("ProtectedRoute: isAdmin:", isAdmin);
-  console.log("ProtectedRoute: user:", user);
-  console.log("ProtectedRoute: user role:", user?.role);
 
   if (loading) {
     return (

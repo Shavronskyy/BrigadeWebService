@@ -24,12 +24,8 @@ const Login: React.FC = () => {
   useEffect(() => {
     if (isAuthenticated) {
       if (isAdmin) {
-        console.log(
-          "User is authenticated and admin, redirecting to admin panel"
-        );
         navigate("/admin");
       } else {
-        console.log("User is authenticated but not admin, redirecting to home");
         navigate("/");
       }
     }
@@ -56,8 +52,6 @@ const Login: React.FC = () => {
       const requestBody = isEmail
         ? { email: formData.username, password: formData.password }
         : { username: formData.username, password: formData.password };
-      console.log("Sending request to:", url);
-      console.log("Request body:", requestBody);
 
       const response = await fetch(url, {
         method: "POST",
@@ -70,17 +64,12 @@ const Login: React.FC = () => {
 
       if (response.ok) {
         const data = await response.json();
-        // Handle successful login
-        console.log("Login successful:", data);
-        console.log("Response status:", response.status);
-        console.log("Response headers:", response.headers);
         setSuccess("Вхід успішний.");
 
         // Store user data and token using AuthContext
         if (data.accessToken) {
           // Decode JWT token to get user info
           const tokenPayload = JSON.parse(atob(data.accessToken.split(".")[1]));
-          console.log("Token payload:", tokenPayload);
 
           // Create user object from token claims
           const userData = {
@@ -101,14 +90,7 @@ const Login: React.FC = () => {
               "User",
           };
 
-          console.log("Extracted user data:", userData);
-          console.log("User role:", userData.role);
-          console.log("Is admin?", userData.role.toLowerCase() === "admin");
-          console.log("About to call login function with token and userData");
-
           login(data.accessToken, userData);
-
-          console.log("Login function called, checking auth state...");
         }
       } else {
         let errorMessage = "Помилка входу";
@@ -136,7 +118,6 @@ const Login: React.FC = () => {
         setError(errorMessage);
       }
     } catch (err) {
-      console.error("Login error details:", err);
       if (err instanceof TypeError && err.message.includes("fetch")) {
         setError("CORS error - API not accessible from browser");
       } else {

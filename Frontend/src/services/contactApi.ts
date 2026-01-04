@@ -36,9 +36,7 @@ export const sendContactMessage = async (
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    console.log("✅ Contact form submitted successfully");
   } catch (error) {
-    console.error("Email sending error:", error);
     throw new Error("Не вдалося надіслати повідомлення. Спробуйте ще раз.");
   }
 };

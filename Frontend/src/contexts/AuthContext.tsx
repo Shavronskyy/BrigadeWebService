@@ -48,12 +48,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (token && userData) {
       try {
         const parsedUser = JSON.parse(userData);
-        console.log("AuthContext: Loading user from localStorage:", parsedUser);
-        console.log("AuthContext: User role from localStorage:", parsedUser.role);
-        console.log("AuthContext: Is admin check from localStorage:", parsedUser.role?.toLowerCase() === "admin");
         setUser(parsedUser);
       } catch (error) {
-        console.error("Error parsing user data:", error);
         localStorage.removeItem("authToken");
         localStorage.removeItem("userData");
       }
@@ -63,14 +59,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   const login = (token: string, userData: User) => {
-    console.log("AuthContext: Login called with user data:", userData);
     localStorage.setItem("authToken", token);
     localStorage.setItem("userData", JSON.stringify(userData));
     setUser(userData);
-    console.log(
-      "AuthContext: User state updated, isAdmin:",
-      userData.role?.toLowerCase() === "admin"
-    );
   };
 
   const logout = () => {
@@ -81,11 +72,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const isAuthenticated = !!user;
   const isAdmin = user?.role?.toLowerCase() === "admin";
-  
-  // Debug logging
-  useEffect(() => {
-    console.log("AuthContext: State changed - user:", user, "isAuthenticated:", isAuthenticated, "isAdmin:", isAdmin);
-  }, [user, isAuthenticated, isAdmin]);
 
   const value: AuthContextType = {
     user,

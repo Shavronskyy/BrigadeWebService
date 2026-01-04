@@ -33,10 +33,6 @@ const Support: React.FC = () => {
                 reports: reports,
               };
             } catch (reportError) {
-              console.error(
-                `Failed to fetch reports for donation ${donation.id}:`,
-                reportError
-              );
               // Return donation without reports if fetching reports fails
               return {
                 ...donation,
@@ -61,7 +57,6 @@ const Support: React.FC = () => {
 
         setDonations(sortedDonations);
       } catch (error) {
-        console.error("Failed to fetch donations:", error);
         // You could add error state here if needed
       } finally {
         setLoading(false);
@@ -120,14 +115,6 @@ const Support: React.FC = () => {
           ) : (
             <div className="campaigns-list">
               {donations.map((donation) => {
-                console.log(
-                  `Support: Rendering donation ${donation.id}:`,
-                  donation
-                );
-                console.log(
-                  `Support: Reports for donation ${donation.id}:`,
-                  donation.reports
-                );
                 return (
                   <div key={donation.id} className="campaign-card">
                     <div className="campaign-image">
@@ -259,12 +246,6 @@ const Support: React.FC = () => {
                                         margin: "2px",
                                       }}
                                       onError={(e) => {
-                                        console.log(
-                                          "Report image load error for report ID:",
-                                          report.id,
-                                          "image ID:",
-                                          imageDto.id
-                                        );
                                         e.currentTarget.style.display = "none";
                                       }}
                                     />

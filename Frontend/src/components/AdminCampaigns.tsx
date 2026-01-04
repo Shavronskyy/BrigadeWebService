@@ -51,7 +51,6 @@ const AdminCampaigns: React.FC = () => {
         const data = await campaignsApiService.getAllCampaigns();
         setCampaigns(data);
       } catch (error) {
-        console.error("Failed to fetch campaigns:", error);
         setError("Помилка завантаження зборів");
       } finally {
         setLoading(false);
@@ -137,7 +136,6 @@ const AdminCampaigns: React.FC = () => {
 
       closeModal();
     } catch (error) {
-      console.error("Failed to save campaign:", error);
       showNotification("Помилка збереження збору", "error");
     }
   };
@@ -173,7 +171,6 @@ const AdminCampaigns: React.FC = () => {
         showNotification("Збір успішно видалено", "success");
         closeDeleteConfirm();
       } catch (error) {
-        console.error("Failed to delete campaign:", error);
         showNotification("Помилка видалення збору", "error");
       }
     }
@@ -188,7 +185,6 @@ const AdminCampaigns: React.FC = () => {
         "success"
       );
     } catch (error) {
-      console.error("Failed to toggle campaign status:", error);
       showNotification("Помилка зміни статусу збору", "error");
     }
   };

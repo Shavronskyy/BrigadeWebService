@@ -17,7 +17,6 @@ const Home: React.FC = () => {
         const data = await postsApiService.getAllPosts();
         setPosts(data);
       } catch (error) {
-        console.error("Failed to fetch posts:", error);
       }
     };
 

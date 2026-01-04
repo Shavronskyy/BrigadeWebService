@@ -41,7 +41,6 @@ const Contacts: React.FC = () => {
         message: "",
       });
     } catch (error) {
-      console.error("Failed to send contact message:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);

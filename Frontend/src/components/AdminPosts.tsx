@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./AdminPosts.css";
 import {
   postsApiService,
@@ -41,6 +41,7 @@ const AdminPosts: React.FC = () => {
   const [isImageViewerOpen, setIsImageViewerOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState("");
   const [selectedImageAlt, setSelectedImageAlt] = useState("");
+  const deletePostIdRef = useRef<number | null>(null);
 
   // Fetch posts from API
   useEffect(() => {
@@ -51,7 +52,6 @@ const AdminPosts: React.FC = () => {
         const data = await postsApiService.getAllPosts();
         setPosts(data);
       } catch (error) {
-        console.error("Failed to fetch posts:", error);
         setError("Помилка завантаження постів");
       } finally {
         setLoading(false);
@@ -142,7 +142,6 @@ const AdminPosts: React.FC = () => {
       setPosts(updatedPosts);
       closeModal();
     } catch (error) {
-      console.error("Failed to save post:", error);
       setError(
         editingPost ? "Помилка оновлення поста" : "Помилка створення поста"
       );
@@ -156,9 +155,15 @@ const AdminPosts: React.FC = () => {
   };
 
   const handleDelete = async (postId: number) => {
+    if (!postId) {
+      setError("Помилка: ID поста не вказано");
+      return;
+    }
+    
     try {
       setLoading(true);
       setError(null);
+      
       await postsApiService.deletePost(postId);
       showNotification("Пост успішно видалено", "success");
 
@@ -166,10 +171,11 @@ const AdminPosts: React.FC = () => {
       const updatedPosts = await postsApiService.getAllPosts();
       setPosts(updatedPosts);
       setDeleteConfirm({ isOpen: false, postId: null, postTitle: "" });
+      deletePostIdRef.current = null;
     } catch (error) {
-      console.error("Failed to delete post:", error);
-      setError("Помилка видалення поста");
-      showNotification("Помилка видалення поста", "error");
+      const errorMessage = error instanceof Error ? error.message : "Невідома помилка";
+      setError(`Помилка видалення поста: ${errorMessage}`);
+      showNotification(`Помилка видалення поста: ${errorMessage}`, "error");
     } finally {
       setLoading(false);
     }
@@ -289,13 +295,19 @@ const AdminPosts: React.FC = () => {
                 </button>
                 <button
                   className="btn btn-danger"
-                  onClick={() =>
+                  onClick={() => {
+                    if (!post.id) {
+                      setError("Помилка: ID поста не знайдено");
+                      return;
+                    }
+                    
+                    deletePostIdRef.current = post.id;
                     setDeleteConfirm({
                       isOpen: true,
                       postId: post.id,
                       postTitle: post.title,
-                    })
-                  }
+                    });
+                  }}
                   disabled={loading}
                 >
                   <span className="btn-icon">🗑️</span>
@@ -423,22 +435,31 @@ const AdminPosts: React.FC = () => {
             <div className="modal-actions">
               <button
                 className="btn btn-secondary"
-                onClick={() =>
+                onClick={() => {
                   setDeleteConfirm({
                     isOpen: false,
                     postId: null,
                     postTitle: "",
-                  })
-                }
+                  });
+                  deletePostIdRef.current = null;
+                }}
                 disabled={loading}
               >
                 Скасувати
               </button>
               <button
                 className="btn btn-danger"
-                onClick={() =>
-                  deleteConfirm.postId && handleDelete(deleteConfirm.postId)
-                }
+                onClick={() => {
+                  const postIdFromState = deleteConfirm.postId;
+                  const postIdFromRef = deletePostIdRef.current;
+                  const postIdToDelete = postIdFromState ?? postIdFromRef;
+                  
+                  if (postIdToDelete !== null && postIdToDelete !== undefined) {
+                    handleDelete(postIdToDelete);
+                  } else {
+                    setError("Помилка: ID поста не вказано");
+                  }
+                }}
                 disabled={loading}
               >
                 {loading ? "Видалення..." : "Видалити"}

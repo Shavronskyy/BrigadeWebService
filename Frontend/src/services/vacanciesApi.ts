@@ -71,7 +71,6 @@ class VacanciesApiService {
 
       return JSON.parse(responseText);
     } catch (error) {
-      console.error("Error fetching vacancies:", error);
       throw error;
     }
   }
@@ -91,7 +90,6 @@ class VacanciesApiService {
       }
       return await response.json();
     } catch (error) {
-      console.error("Error creating vacancy:", error);
       throw error;
     }
   }
@@ -111,7 +109,6 @@ class VacanciesApiService {
       }
       return await response.json();
     } catch (error) {
-      console.error("Error updating vacancy:", error);
       throw error;
     }
   }
@@ -126,7 +123,6 @@ class VacanciesApiService {
         throw new Error(errorMessage);
       }
     } catch (error) {
-      console.error("Error deleting vacancy:", error);
       throw error;
     }
   }

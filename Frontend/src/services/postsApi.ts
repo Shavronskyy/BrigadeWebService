@@ -42,6 +42,15 @@ class PostsCrudService {
     return `${API_CONFIG.BASE_URL}/${url}`;
   }
 
+  private getAuthHeaders(): HeadersInit {
+    const headers: HeadersInit = {};
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+    return headers;
+  }
+
   private async extractErrorMessage(response: Response): Promise<string> {
     try {
       const responseText = await response.text();
@@ -74,22 +83,40 @@ class PostsCrudService {
   }
 
   private transformPost(backendPost: any): Post {
-    return {
-      id: backendPost.id,
-      title: backendPost.title,
-      shortText: backendPost.shortText,
-      content: backendPost.content,
-      createdAt: backendPost.createdAt,
-      images: (backendPost.images || []).map((img: any) => ({
-        id: img.id,
-        url: this.formatImageUrl(img.url || img.imageUrl || ""),
+    // Handle both camelCase (from JSON) and PascalCase (from C#)
+    const postId = backendPost.id ?? backendPost.Id ?? backendPost.ID;
+    
+    const transformed: Post = {
+      id: postId,
+      title: backendPost.title ?? backendPost.Title ?? "",
+      shortText: backendPost.shortText ?? backendPost.ShortText ?? "",
+      content: backendPost.content ?? backendPost.Content ?? "",
+      createdAt: backendPost.createdAt ?? backendPost.CreatedAt ?? "",
+      images: (backendPost.images || backendPost.Images || []).map((img: any) => ({
+        id: img.id ?? img.Id ?? img.ID ?? 0,
+        url: this.formatImageUrl(img.url || img.Url || img.imageUrl || img.ImageUrl || ""),
       })),
     };
+    
+    // Ensure id is a number
+    if (typeof transformed.id !== 'number') {
+      const numId = Number(transformed.id);
+      if (!isNaN(numId)) {
+        transformed.id = numId;
+      }
+    }
+    
+    return transformed;
   }
 
   async getAllPosts(): Promise<Post[]> {
     try {
-      const response = await fetch(`${this.baseUrl}/getAllDto`);
+      const headers = this.getAuthHeaders();
+      
+      const response = await fetch(`${this.baseUrl}/getAllDto`, {
+        headers: headers,
+      });
+      
       if (!response.ok) {
         const errorMessage = await this.extractErrorMessage(response);
         throw new Error(errorMessage);
@@ -101,15 +128,21 @@ class PostsCrudService {
       }
 
       const posts: any[] = JSON.parse(responseText);
-      return posts
+      
+      const transformedPosts = posts
         .map((post: any) => this.transformPost(post))
+        .filter((post: Post) => {
+          // Filter out posts without valid ID
+          return post.id !== null && post.id !== undefined && typeof post.id === 'number';
+        })
         .sort((a: Post, b: Post) => {
           const aTime = new Date(a.createdAt ?? 0).getTime();
           const bTime = new Date(b.createdAt ?? 0).getTime();
           return bTime - aTime;
         });
+      
+      return transformedPosts;
     } catch (error) {
-      console.error("Error fetching posts:", error);
       throw error;
     }
   }
@@ -125,7 +158,6 @@ class PostsCrudService {
       const post: any = await response.json();
       return this.transformPost(post);
     } catch (error) {
-      console.error("Error fetching post:", error);
       throw error;
     }
   }
@@ -145,8 +177,11 @@ class PostsCrudService {
         }
       }
 
+      const headers = this.getAuthHeaders();
+      
       const response = await fetch(`${this.baseUrl}/create`, {
         method: "POST",
+        headers: headers,
         body: formData,
       });
 
@@ -177,10 +212,6 @@ class PostsCrudService {
       try {
         result = JSON.parse(responseText);
       } catch (parseError) {
-        console.warn(
-          "Failed to parse JSON response, creating minimal result:",
-          parseError
-        );
         const minimalResult = {
           id: Date.now(),
           title: post.title,
@@ -194,7 +225,6 @@ class PostsCrudService {
 
       return this.transformPost(result);
     } catch (error) {
-      console.error("Error creating post:", error);
       throw error;
     }
   }
@@ -215,8 +245,11 @@ class PostsCrudService {
         }
       }
 
+      const headers = this.getAuthHeaders();
+      
       const response = await fetch(`${this.baseUrl}/update`, {
         method: "PUT",
+        headers: headers,
         body: formData,
       });
 
@@ -239,31 +272,29 @@ class PostsCrudService {
       try {
         result = JSON.parse(responseText);
       } catch (parseError) {
-        console.warn(
-          "Failed to parse JSON response, using input data:",
-          parseError
-        );
         return this.transformPost(post);
       }
 
       return this.transformPost(result);
     } catch (error) {
-      console.error("Error updating post:", error);
       throw error;
     }
   }
 
   async deletePost(id: number): Promise<void> {
     try {
+      const headers = this.getAuthHeaders();
+      
       const response = await fetch(`${this.baseUrl}/delete/${id}`, {
         method: "DELETE",
+        headers: headers,
       });
+      
       if (!response.ok) {
         const errorMessage = await this.extractErrorMessage(response);
         throw new Error(errorMessage);
       }
     } catch (error) {
-      console.error("Error deleting post:", error);
       throw error;
     }
   }

@@ -17,6 +17,11 @@ namespace BrigadeWebService_DAL.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Post>()
+                .HasMany(p => p.Images)
+                .WithOne(i => i.Post)
+                .HasForeignKey(i => i.PostId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

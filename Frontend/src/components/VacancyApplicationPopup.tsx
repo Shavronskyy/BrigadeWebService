@@ -57,7 +57,6 @@ const VacancyApplicationPopup: React.FC<VacancyApplicationPopupProps> = ({
         setSubmitStatus("idle");
       }, 2000);
     } catch (error) {
-      console.error("Failed to submit vacancy application:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
