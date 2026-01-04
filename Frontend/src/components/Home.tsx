@@ -10,6 +10,7 @@ const Home: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showAllPosts, setShowAllPosts] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -106,7 +107,7 @@ const Home: React.FC = () => {
           <div className="container">
             <h2 className="section-title">Блог</h2>
             <div className="posts-grid">
-              {posts.map((post) => (
+              {(showAllPosts ? posts : posts.slice(0, 4)).map((post) => (
                 <div
                   key={post.id}
                   className="post-card"
@@ -127,6 +128,16 @@ const Home: React.FC = () => {
                 </div>
               ))}
             </div>
+            {posts.length > 4 && !showAllPosts && (
+              <div className="show-more-container">
+                <button
+                  className="show-more-btn"
+                  onClick={() => setShowAllPosts(true)}
+                >
+                  Показати більше
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}
